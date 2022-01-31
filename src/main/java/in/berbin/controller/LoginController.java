@@ -1,6 +1,7 @@
 package in.berbin.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,12 @@ import in.berbin.model.Users;
 
 @WebServlet("/loginusers")
 public class LoginController extends HttpServlet{
+	public  LocalDate getdate()
+	{
+        LocalDate lt = LocalDate.now();
+		return lt;
+	}
+	
 
 public void service(HttpServletRequest req,HttpServletResponse res) {
 
@@ -32,6 +39,8 @@ AdminDaoImpl adminDao=new AdminDaoImpl();
 UserDaoImpl userDao=new UserDaoImpl();
 Admins adminModel;
 Users userModel=new Users();
+LocalDate currentdate=getdate();
+session.setAttribute("TodayDate", currentdate);
 
 //admin Login
 if(loginId.endsWith("@admin.com")) {
@@ -43,7 +52,7 @@ System.out.println(adminModel);
 if(adminModel!=null) {
 	
 try {
-res.sendRedirect("AdminHome.jsp");
+res.sendRedirect("adminHome.jsp");
 session.setAttribute("AdminHome", "HomeSession");
 } catch (IOException e) {
 System.out.println(e.getMessage());
@@ -100,7 +109,7 @@ if(userModel.getUserPassword().equals(password)) {
 try {
 session.setAttribute("userdata", userModel);
 session.setAttribute("userHome", "loginSession");
-res.sendRedirect("UserHomePage.jsp");
+res.sendRedirect("userHomePage.jsp");
 } catch (IOException e) {
 System.out.println(e.getMessage());
 }

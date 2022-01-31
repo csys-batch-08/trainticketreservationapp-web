@@ -102,9 +102,9 @@ left: 30px;
 <body>
     <div id="addtrains">
         <ul>
-            <li><a href="AdminHome.jsp">Profile</a></li>
-            <li><a href="AddTrain.jsp">Add Train</a></li>            
-            <li><a href="TrainList.jsp">Train list</a></li>            
+            <li><a href="adminHome.jsp">Profile</a></li>
+            <li><a href="addTrain.jsp">Add Train</a></li>            
+            <li><a href="TrainListController">Train list</a></li>            
             <li><a href="UserList.jsp">User list</a></li>
             <li><a href="BookingList.jsp">Booking list</a></li>
         </ul>
@@ -124,7 +124,7 @@ left: 30px;
             <tr>
                 <th><label for="trainclass">Train Class:</label>
                     <td>
-                <input type="text" name="trainclass" id="trclass" pattern="[a-zA-Z]+" placeholder="Enter train class" required><br><br></th>
+                <input type="text" name="trainclass" id="trclass" pattern="[a-z A-Z]{2,40}" placeholder="Enter train class" required><br><br></th>
                          </td>
             </tr>
             <tr>
@@ -173,7 +173,7 @@ left: 30px;
                     <th>
                         <label for="totalseat">Total Seat:</label>
                            <td>
-                        <input type="number" name="totalseat" id="trtotalseat" min="0" placeholder="Enter total seat" required><br><br>
+                        <input type="number" name="totalseat" id="trtotalseat" pattern="[0-9]" min="0" placeholder="Enter total seat" required><br><br>
                                              </td>
                     </th>
                 </tr>

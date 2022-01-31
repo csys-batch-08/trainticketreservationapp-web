@@ -82,8 +82,9 @@ public boolean cancelTicket(Users userModel1,BookingDetails booking,Trains train
 //to show booking history of particular user
 
 public List<BookingDetails>getBookingDetailsForPresentUser(Users userModel){
-	
-	String Query="select*from booking_details where user_id='"+userModel.getUserId()+"'";
+	String Query = "select t.TRAIN_ID,  t.TRAIN_NAME,t. TRAIN_CLASS,t.TRAIN_NUMBER, t.TRAIN_SOURCE,t.TRAIN_DESTINATION,t.TRAIN_DEPARTURE_TIME,"
+			+ "t.TRAIN_ARRAIVAL_TIME, t. TOTAL_SEAT, t.TICKET_PRICE, b.USER_ID,  b.PNR_NUMBER, b.JOURNEY_DATE,b.BOOKING_DATE,"
+			+ "b.TICKET_COUNT, b.TOTAL_PRICE,b.TICKET_STATUS from booking_details b inner join trains t on b.train_id=t.train_id where b.user_id=?";
 	Connection con;
 	
 	PreparedStatement pstmt;
@@ -94,11 +95,13 @@ public List<BookingDetails>getBookingDetailsForPresentUser(Users userModel){
     try {
 		con=ConnectionUtil.getDBconnect();
 		pstmt=con.prepareStatement(Query);
+		pstmt.setInt(1, userModel.getUserId());
 		rs=pstmt.executeQuery();
 		while(rs.next()) {
-			
-			BookingDetails bookingDetailsModel=new BookingDetails(userModel,rs.getInt(2),rs.getLong(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getString(8));
+			Trains trains = new Trains(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getTimestamp(7).toLocalDateTime(),rs.getTimestamp(8).toLocalDateTime(),rs.getInt(9),rs.getInt(10));
 	
+			BookingDetails bookingDetailsModel=new BookingDetails(userModel,trains,rs.getLong(12),rs.getDate(13).toLocalDate(),rs.getDate(14).toLocalDate(),rs.getInt(15),rs.getInt(16),rs.getString(17));
+		
 			bookingList.add(bookingDetailsModel);
 			
 			

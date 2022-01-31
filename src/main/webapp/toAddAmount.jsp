@@ -103,7 +103,7 @@ th {
                 <br>
                <tr>
                <th> <button class="buttonsignup" id="subsignup" type="submit" >Click to add</button></th>
-                <a href="UserHomePage.jsp"><button type="submit" id="ressignup"class="buttonsignup">Back to Home</button></a>
+                <a href="userHomePage.jsp"><button type="submit" id="ressignup"class="buttonsignup">Back to Home</button></a>
               
             </tr>
              

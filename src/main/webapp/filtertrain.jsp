@@ -7,21 +7,12 @@
 <%-- <%@page import="com.trainticketreservation.model.*"%> --%>
 <%@page import="in.berbin.model.*"%>
 <%@page import="java.util.*"%>
-<%  DateTimeFormatter formatter =
-     DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <% 
-    DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    String source=request.getParameter("sourcelocation");
-      String destination=request.getParameter("destinationlocation");
-      String dateStr = String.valueOf(request.getParameter("date"));
-      
-      LocalDate date1=LocalDate.parse(dateStr);
-      TrainDaoImpl trainDao=new TrainDaoImpl();
-    %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,10 +106,10 @@
         </style>
 </head>
 <body>
-    <form action="ticketBooking.jsp">
+    <form>
         <div>
             <fieldset id="fieldsettable">
-              <!--   <legend><h3>Trains</h3></legend> -->
+           
            
                 <div id="forcontent">
                       <ul id="forcontentinlist">
@@ -133,12 +124,7 @@
                 <div id="outerlinetable">
                     <table>
                         
-                   <% 
-                   
-                   List<Trains> filteredTrains= new ArrayList<Trains>(); 
-                   
-                   List<Trains> filtered=trainDao.searchTrain(date1, source, destination);
-                   %>
+                  
                    
                    <table border="2" id="alltrains">
 <h1><b>Train List</b></h1>
@@ -159,33 +145,31 @@
 </thead>
 <br>
 <br>
+
 <tbody>
-<%
-int i = 0;
-for (Trains showTrain : filtered) {
-i++;
-%>
+ <c:set var="i" value="0"/> 
+<c:forEach items="${FilteredTrain}" var="filterTrainList">
+  <c:set var="i" value="${i+1}"/> 
+
 <tr>
-<td><%=i%></td>
-<td><%= showTrain.getTrainName()%></td>
-<td><%= showTrain.getTrainClass()%></td>
-<td> <%= showTrain.getTrainNumber()%></td>
-<td> <%= showTrain.getTrainSource()%></td>
-<td> <%= showTrain.getTrainDestination()%></td>
-<td> <%= showTrain.getTrainDepartureTime().format(formatter)%></td>
-<td> <%= showTrain.getTrainArraivalTime().format(formatter)%></td>
-<td> <%= showTrain.getTotalseat()%></td>
-<td> <%= showTrain.getTicketPrice()%></td>
-<td> <button id="trainId" name="traindetails" class="btn btn-primary btn-block" value="<%=showTrain.getTrainId()%>">Book</button></td>
+<td>${i}</td>
+<td>${filterTrainList.trainName}</td>
+<td>${filterTrainList.trainClass}</td>
+<td> ${filterTrainList.trainNumber}</td>
+<td>${filterTrainList.trainSource}</td>
+<td>${filterTrainList.trainDestination}</td>
+<td>${filterTrainList.trainDepartureTime}</td>
+<td>${filterTrainList.trainArraivalTime}</td>
+<td>${filterTrainList.totalseat}</td>
+<td>${filterTrainList.ticketPrice}</td>
+<td> <button id="trainId"  class="btn btn-primary btn-block" ><a href="SelectTrainController?traindetails=${filterTrainList.trainId}">Book</a></button></td>
 
 </tr>
-<%
-}
-%>
+</c:forEach>
                    
 </table></table></div></fieldset></div></form><br><br> 
 <center> 
-<a href="UserHomePage.jsp"><button class="btn btn-outline-primary">Back to HomePage</button></a> 
+<a href="userHomePage.jsp"><button class="btn btn-outline-primary">Back to HomePage</button></a> 
 </center>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>               
 </body>

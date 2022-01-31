@@ -35,19 +35,19 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="AdminHome.jsp">Home</a>
+          <a class="nav-link" href="adminHome.jsp">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="AddTrain.jsp">Add Train</a>
+          <a class="nav-link" href="addTrain.jsp">Add Train</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="TrainList.jsp">Train List</a>
+          <a class="nav-link" href="TrainListController">Train List</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="UserList.jsp">User List</a>
+          <a class="nav-link" href="UserListController">User List</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="BookingListforAdmin.jsp">Booking list</a>
+          <a class="nav-link" href="BookingListForAdmin">Booking list</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index.jsp">LogOut</a>

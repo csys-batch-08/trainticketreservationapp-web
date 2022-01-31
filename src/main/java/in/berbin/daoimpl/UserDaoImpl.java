@@ -15,16 +15,14 @@ import in.berbin.util.ConnectionUtil;
 public class UserDaoImpl implements UserDAO {
 	public Users loginUser(long UserMobileNumber ) {
 
-		String userLogin = "select * from users where user_mobileNumber='" + UserMobileNumber + "'";
+		String userLogin = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobileNumber=?";
 		Connection con;
 		Users userModel = null;
 		try {
 			con = ConnectionUtil.getDBconnect();
 			PreparedStatement pstatement = con.prepareStatement(userLogin);
-
-			Statement statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(userLogin);
-
+			pstatement.setLong(1, UserMobileNumber);
+			ResultSet rs = pstatement.executeQuery();
 			rs.next();
 			userModel = new Users(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getLong(5),
 					rs.getString(6), rs.getString(7), rs.getInt(8));
@@ -113,7 +111,7 @@ public class UserDaoImpl implements UserDAO {
     public List<Users> showAllUsers()
     {
     	List<Users> userList = new ArrayList<Users>();
-    	String showusersquery="select*from users";
+    	String showusersquery="select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users";
     	Connection con = null;
     	PreparedStatement ps;
     	try {
@@ -184,7 +182,7 @@ public class UserDaoImpl implements UserDAO {
 	public Users getUserDetailsById(int userId) 
 	{ 
 
-		String getUser = "select * from users where user_id=?";
+		String getUser = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_id=?";
 		Connection con = null;
 		PreparedStatement pstatement = null;
 		Users userModel = null;
@@ -211,13 +209,13 @@ public class UserDaoImpl implements UserDAO {
 	}
 	public boolean checkUser(long userMobileNumber ) {
 
-		String userLogin = "select * from users where user_mobilenumber=" + userMobileNumber;
+		String userLogin = "select user_id from users where user_mobilenumber=?";
 		Connection con;
 		boolean checkUserFlag = true;
 		try {
 			con = ConnectionUtil.getDBconnect();
 			PreparedStatement pstatement = con.prepareStatement(userLogin);
-
+			pstatement.setLong(1, userMobileNumber);
 			int i = pstatement.executeUpdate(userLogin);
 			if (i > 0) {
 				checkUserFlag = true;
@@ -235,7 +233,7 @@ public class UserDaoImpl implements UserDAO {
 	}
 	public boolean checkExistingUserWhileRegister(long userMobileNumber) {
 
-		String checkUser = "select * from users where user_mobilenumber	=?";
+		String checkUser = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobilenumber	=?";
 		Connection con = null;
 		PreparedStatement pstatement = null;
 		Users userModel;

@@ -14,6 +14,8 @@
     <%@page import="in.berbin.model.*"%>
         <%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="java.time.format.DateTimeFormatter"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,17 +129,6 @@ body{
                 <div id="outerlinetable">
                     <table>
                         
-                    <%
-                    DateTimeFormatter formatter =
-                    DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-                    HttpSession session2=request.getSession();
-              Users userData=(Users) session2.getAttribute("userdata");
-              UserDaoImpl userDao=new UserDaoImpl();
-               BookingDetailsDaoImpl bookingDetailsDao=new BookingDetailsDaoImpl();
-               List<BookingDetails> bookingDetailsModel=bookingDetailsDao.getBookingDetailsForPresentUser(userData);
-               
-               
-               %>
 <table border="2" id="alltrains">
 <h1><b>Booking List</b></h1>
 <thead>
@@ -160,88 +151,66 @@ body{
 <br>
 <br>
 <tbody>
-<%
 
+ 
+<c:forEach begin="1" items="${currentttt}" var="CurrentUser" varStatus="loop">
 
-TrainDaoImpl trainDao=new TrainDaoImpl();
-for (int i=1; i<bookingDetailsModel.size(); i++) {
-	
-	BookingDetails book = bookingDetailsModel.get(i);
-	
-	 Trains train= trainDao.findTrainsDetailsUsingID(book.getTrainid());
+  <c:set var="i" value="0"/>
 
-%>
-
-<%! 
-
-private static Date getcurrentdate()
-{
-	java.util.Date today = new java.util.Date();
-	return new java.sql.Date(today.getTime());
-}
-
-
-
-%>
-
-
-
+  <c:set var="i" value="${i+1}"/>
+		 <fmt:parseDate value="${CurrentUser.getTrainModel().getTrainDepartureTime()}" pattern="yyyy-MM-dd'T'HH:mm" var="macthDate" type="both"/>
 <tr>
- <td><%=i%></td> 
-<td><%= train.getTrainName() %></td>
-<td><%= train.getTrainClass()%></td>
-<td><%= train.getTrainNumber()%></td>
-<td><%= train.getTrainSource()%></td>
-<td><%= train.getTrainDestination()%></td>
-<td> <%= book.getPnrNumber()%></td>
-<td> <%= book.getJourneyDate() %></td>
-<td> <%= book.getTicketCount()%></td>
-<td> <%= train.getTrainDepartureTime().format(formatter)%></td>
-<%-- <td> <%= train.getTrainArraivalTime().format(formatter)%></td> --%>
-<td> <%= book.getTotalPrice()%></td>
-<td> <%= book.getTicketStatus()%></td>
+ <td>${loop.count}</td> 
+<td>${CurrentUser.getTrainModel().getTrainName()}</td>
+<td>${CurrentUser.getTrainModel().getTrainClass()}</td>
+<td>${CurrentUser.getTrainModel().getTrainNumber()}</td>
+<td>${CurrentUser.getTrainModel().getTrainSource()}</td>
+<td>${CurrentUser.getTrainModel().getTrainDestination()}</td>
+<td>${CurrentUser.pnrNumber}</td>
+<td>${CurrentUser.journeyDate}</td>
+<td>${CurrentUser.ticketCount}</td>
+<td> <fmt:formatDate value="${macthDate}" pattern="dd-MM-yyyy HH:mm" type="both"/> </td>
+<td>${CurrentUser.totalPrice}</td>
+<td>${CurrentUser.ticketStatus}</td>
 
-<%
-LocalDate date  = train.getTrainDepartureTime().toLocalDate();
-Date loca1 = java.sql.Date.valueOf(date);
-String status = book.getTicketStatus();
-%>
+ <c:set var="status" value="${CurrentUser.ticketStatus}"/>
+ 					 <c:set var="today" value="${TodayDate}"/> 
+ 					 <c:set var="departure" value="${CurrentUser.getTrainModel().getTrainDepartureTime()}"/>
+ 					 <fmt:parseDate value="${CurrentUser.getTrainModel().getTrainDepartureTime()}" pattern="yyyy-MM-dd'T'HH:mm" var="macthDate" type="both"/>
+ 					 <fmt:formatDate value="${macthDate}" var="presentdate" pattern="yyyy-MM-dd" type="date"/> 
+ <c:choose>
+ 	
+ 	<c:when test="${today<presentdate}">
+ 	 	<c:choose>
+ 	 	
+ 	 	 	<c:when test= "${CurrentUser.ticketStatus.equals('Cancelled')}">
+ 	<td>CANCELLED</td>
+ 	
+ 	</c:when>
+ 	<c:otherwise>
 
-<%
-if(loca1.after(getcurrentdate())){
-	%>
-<% 
-if(status.equalsIgnoreCase("Cancelled"))
-{%>
-	<td>Already Cancelled </td>
-<% }
+	     	
+	     		<td><button class="btn btn-danger" ><a href="cancelTicket.jsp?pnrnumber=${CurrentUser.pnrNumber}">Cancel</a></button></td>
+ 	</c:otherwise>
+ 	 	
+ 	</c:choose>
+ 	
+				
+		</c:when>
+<c:otherwise>	
 
-else
-{%>
+<td>Journey Completed</td>
 
-<td><button class="btn btn-danger" <a href="CancelTicket.jsp?pnrnumber=<%=book.getPnrNumber()%>">>Cancel</a>></button></td>
 
-<% }
-%>
-<%} 
-else
-{
-	%>
-	<td>Journey Completed</td>
-	
-<%}
-
-%>
-
+</c:otherwise>					
+					</c:choose>  
+					 
 </tr>
-<%
-
-}
-%>
+</c:forEach>
                    
 </table></table></div></fieldset></div></form> 
 <center>  
-<a href="UserHomePage.jsp"><button class="btn btn-primary" >Back to HomePage</button></a>   
+<a href="userHomePage.jsp"><button class="btn btn-primary" >Back to HomePage</button></a>   
 </center>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>               
 </body>

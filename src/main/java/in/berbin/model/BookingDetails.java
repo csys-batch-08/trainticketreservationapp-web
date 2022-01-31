@@ -9,6 +9,7 @@ public class BookingDetails {
 private Users usermodel;
 private Trains trainModel;
 private int trainid;
+
 private long pnrNumber;
 private LocalDate journeyDate;
 private LocalDate bookingDate;

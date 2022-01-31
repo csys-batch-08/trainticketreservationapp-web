@@ -30,7 +30,7 @@ public class UpdateTrainController extends HttpServlet {
 		TrainDao.updatetrain(trainModel);
 		if(TrainDao!=null) {
 			try {
-				res.sendRedirect("AdminHome.jsp");
+				res.sendRedirect("adminHome.jsp");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

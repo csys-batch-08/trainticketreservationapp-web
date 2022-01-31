@@ -193,11 +193,11 @@ background-size: cover;
           
          <!--    <li><a href="Searchtrain.jsp">Train</a></li> -->
           <img id="logo" src="Assests/trainlogo.png">
-            <li><a href="AboutUs.jsp">About us</a></li>
-            <li><a href="UpdateUser.jsp?Username=<%=userData.getUserName()%>&Userdob=<%=userData.getUserDob()%>&Usermailid=<%=userData.getUserEmail()%>
+            <li><a href="aboutUs.jsp">About us</a></li>
+            <li><a href="updateUser.jsp?Username=<%=userData.getUserName()%>&Userdob=<%=userData.getUserDob()%>&Usermailid=<%=userData.getUserEmail()%>
             &Usermobileno=<%=userData.getUserMobileNumber()%>">Update Profile</a></li>
-            <li><a href="ManageWallet.jsp">Manage Wallet</a></li>
-            <li>  <a href="BookingHistory.jsp">Bookings</a></li>
+            <li><a href="manageWallet.jsp">Manage Wallet</a></li>
+            <li>  <a href="BookingHistoryController">Bookings</a></li>
               <li>  <a href="logout11">Logout</a></li>
 <li> <div id="username"><label for="username">
      Hello _ <%=userData.getUserName() %></label></div>
@@ -206,7 +206,7 @@ background-size: cover;
             
 
 
-    <form action="filtertrain.jsp">
+    <form action="FilterTrainController" method="post">
         <div id="searchlocation">
             <table>
                 <tr>

@@ -4,8 +4,9 @@
       <%@page import="in.berbin.model.Trains"%>
     <%@page import="java.util.*"%>
             <%@page import="in.berbin.daoimpl.TrainDaoImpl"%>
-           <%  DateTimeFormatter formatter =
-     DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");%>
+             <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+                   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+         
             
 <!DOCTYPE html>
 <html>
@@ -47,16 +48,13 @@
 
     <div id="trainlist">
         <ul>
-            <li><a href="AdminHome.jsp">Home</a></li>
-            <li><a href="AddTrain.jsp">Add Train</a></li>            
+            <li><a href="adminHome.jsp">Home</a></li>
+            <li><a href="addTrain.jsp">Add Train</a></li>            
                       
-            <li><a href="UserList.jsp">User list</a></li>
-            <li><a href="BookingListforAdmin.jsp">Booking list</a></li>
+            <li><a href="UserListController">User list</a></li>
+            <li><a href="BookingListForAdmin">Booking list</a></li>
         </ul>
     </div>
-        <% TrainDaoImpl trainDao = new TrainDaoImpl();
-    List<Trains> trainList = new ArrayList<Trains>();
-    trainList = trainDao.showAllTrains();%>
 
 
 <table border="2" id="alltrains" class="table table-striped table-hover">
@@ -81,34 +79,29 @@
 <br>
 <br>
 <tbody>
-<%
-int i = 0;
-for (Trains showTrain : trainList) {
-i++;
-%>
-<tr>
-<td><%=i%></td>
-<td><%=showTrain.getTrainId()%></td>
-<td><%= showTrain.getTrainName()%></td>
-<td><%=showTrain.getTrainClass()%></td>
-<td> <%=showTrain.getTrainNumber()%></td>
-<td> <%=showTrain.getTrainSource()%></td>
-<td> <%=showTrain.getTrainDestination()%></td>
-<td> <%=showTrain.getTrainDepartureTime().format(formatter)%></td>
-<td> <%=showTrain.getTrainArraivalTime().format(formatter)%></td>
-<td> <%=showTrain.getTotalseat()%></td>
-<td> <%=showTrain.getTicketPrice()%></td>
-<td><a href="updateTrain.jsp?TrainName=<%=showTrain.getTrainName()%> &TrainClass=<%=showTrain.getTrainClass()%>&Departuretrain=
-<%=showTrain.getTrainDepartureTime()%>&TrainNumber=<%=showTrain.getTrainNumber()%>&Arrival=<%= showTrain.getTrainArraivalTime()%>&source=<%=showTrain.getTrainSource() %>
-&destination=<%= showTrain.getTrainDestination()%>&totalseat=<%=showTrain.getTotalseat()%>&ticketprice=<%=showTrain.getTicketPrice()%>">Update</a>
-    
-    
-    
 
+ <c:set var="i" value="0"/> 
+<c:forEach items="${AllTrains}" var="trainList">
+  <c:set var="i" value="${i+1}"/>
+  <fmt:parseDate value="${trainList.trainDepartureTime}" pattern="yyyy-MM-dd'T'HH:mm" var="departure" type="both"/>
+  <fmt:parseDate value="${trainList.trainArraivalTime}" pattern="yyyy-MM-dd'T'HH:mm" var="arraival" type="both"/>
+<tr>
+<td>${i}</td>
+<td>${trainList.trainId}</td>
+<td>${trainList.trainName}</td>
+<td>${trainList.trainClass}</td>
+<td>${trainList.trainNumber}</td>
+<td>${trainList.trainSource}</td>
+<td>${trainList.trainDestination}</td>
+<td> <fmt:formatDate value="${departure}" pattern="dd-MM-yyyy HH:mm" type="both"/> </td>
+<td> <fmt:formatDate value="${arraival}" pattern="dd-MM-yyyy HH:mm" type="both"/> </td>
+<td>${trainList.totalseat}</td>
+<td>${trainList.ticketPrice}</td>
+<td><a href="updateTrain.jsp?TrainName=${trainList.trainName} &TrainClass=${trainList.trainClass}&Departuretrain=
+${trainList.trainDepartureTime}&TrainNumber=${trainList.trainNumber}&Arrival=${trainList.trainArraivalTime}&source=${trainList.trainSource}
+&destination=${trainList.trainDestination}&totalseat=${trainList.totalseat}&ticketprice=${trainList.ticketPrice}">Update</a>
 </tr>
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>       

@@ -32,9 +32,7 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
         //for low balance
         user1=userDao.getUserDetailsById(user1.getUserId());
         
-     
-        int trainId=(int) session.getAttribute("presenttrain");
-        Trains trainModel=trainDao.findTrainsDetailsUsingID(trainId);
+        Trains trainModel=(Trains)session.getAttribute("presenttrain");
 
      
        
@@ -64,7 +62,7 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
         session.setAttribute("lastuserModel", userModel);
         if(ticketInsertFlag) {
             try {
-                res.sendRedirect("BookedSucessful.jsp");
+                res.sendRedirect("bookedSucessful.jsp");
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }

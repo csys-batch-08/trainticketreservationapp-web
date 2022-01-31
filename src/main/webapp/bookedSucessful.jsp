@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container-fluid">
-<form action="UserHomePage.jsp">
+<form action="userHomePage.jsp">
 <center>
 <h1>Booked Sucessfully!!</h1>
 <button class="btn btn-primary btn-block" id="" type="submit">Back to home page</button>

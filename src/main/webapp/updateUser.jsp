@@ -131,7 +131,7 @@ input{
         </tr>
     </table>
 </form>
-      <a href="UserHomePage.jsp"><button type="submit" class="buttonsignup">Back to HomePage</button></a>
+      <a href="userHomePage.jsp"><button type="submit" class="buttonsignup">Back to HomePage</button></a>
 </div>
 </body>
 

@@ -6,8 +6,8 @@
     <%@page import="java.time.format.DateTimeFormatter"%>
             <%@page import="in.berbin.daoimpl.TrainDaoImpl"%>
             <%@page import="in.berbin.daoimpl.BookingDetailsDaoImpl"%>
-           <%  DateTimeFormatter formatter =
-     DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");%>
+               <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         
             
 <!DOCTYPE html>
 <html>
@@ -43,18 +43,19 @@
 <body>
     <div id="bookinglist">
         <ul>
-            <li><a href="AdminHome.jsp">Profile</a></li>
-            <li><a href="AddTrain.jsp">Add Train</a></li>            
-            <li><a href="TrainList.jsp">Train list</a></li>            
-            <li><a href="UserList.jsp">User list</a></li>
+            <li><a href="adminHome.jsp">Profile</a></li>
+            <li><a href="addTrain.jsp">Add Train</a></li>            
+            <li><a href="TrainListController">Train list</a></li>            
+            <li><a href="UserListController">User list</a></li>
            
         </ul>
-        <%BookingDetailsDaoImpl bookingDao=new BookingDetailsDaoImpl();
-List<BookingDetails> allBookings=new ArrayList<BookingDetails>();
-allBookings=bookingDao.showAllBookings();%> 
+        
    <table border="2" id="alltrains" class="table table-striped table-hover">
 <h1><b><centre>Booking List</centre></b></h1>
 <thead>
+ <c:if test="${not empty AllReservation}">
+ 
+
 <tr>
 <th>No</th>
 <th>UserID</th>
@@ -71,26 +72,23 @@ allBookings=bookingDao.showAllBookings();%>
 <br>
 <br>
 <tbody>
-<%
-int i = 0;
-for (BookingDetails showBooking : allBookings) {
-i++;
-%> 
+<c:set var="i" value="0"/> 
+<c:forEach items="${AllReservation}" var="bookingList">
+  <c:set var="i" value="${i+1}"/>
 
 <tr>
-<td><%=i%></td>
-<td><%=showBooking.getUserId()%></td> 
-<td><%= showBooking.getTrainid()%></td>
-<td><%=showBooking.getPnrNumber()%></td>
-<td> <%=showBooking.getBookingDate()%></td>
-<td> <%=showBooking.getJourneyDate()%></td>
-<td> <%=showBooking.getTicketCount()%></td>
-<td> <%=showBooking.getTotalPrice()%></td>
-<td> <%=showBooking.getTicketStatus()%></td>   
+<td>${i}</td>
+<td>${bookingList.userId}</td> 
+<td>${bookingList.trainid}</td>
+<td>${bookingList.pnrNumber}</td>
+<td>${bookingList.bookingDate}</td>
+<td>${bookingList.journeyDate}</td>
+<td>${bookingList.ticketCount}</td>
+<td>${bookingList.totalPrice}</td>
+<td>${bookingList.ticketStatus}</td>   
   </tr>
-<%
-  }
-%>      
+</c:forEach>  
+</c:if>   
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
