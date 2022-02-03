@@ -13,6 +13,7 @@ import in.berbin.daoimpl.UserDaoImpl;
 import in.berbin.model.Users;
 @WebServlet("/updateuser")
 public class UpdateUserController extends HttpServlet {
+	@Override
 	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException {
 	    
 		// DateTimeFormatter dateFormat=DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -35,7 +36,7 @@ public class UpdateUserController extends HttpServlet {
 		try {
 			userDao.update(userModel);
 			if(userDao!=null) {
-				res.sendRedirect("login.jsp");
+				res.sendRedirect("index.jsp");
 			}else
 			{
 				res.getWriter().print("Your profile not updated");

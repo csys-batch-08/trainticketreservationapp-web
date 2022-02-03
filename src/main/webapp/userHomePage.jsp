@@ -5,9 +5,10 @@
     <%@page import="in.berbin.model.Users" %>
     <%@page import="in.berbin.daoimpl.UserDaoImpl" %>
     <%@page import="javax.servlet.http.HttpSession" %>
-    <%HttpSession session1=request.getSession();
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   <%--  <%HttpSession session1=request.getSession();
       Users userData=(Users)session1.getAttribute("userdata");
-      System.out.println(userData);%>
+      System.out.println(userData);%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -194,14 +195,14 @@ background-size: cover;
          <!--    <li><a href="Searchtrain.jsp">Train</a></li> -->
           <img id="logo" src="Assests/trainlogo.png">
             <li><a href="aboutUs.jsp">About us</a></li>
-            <li><a href="updateUser.jsp?Username=<%=userData.getUserName()%>&Userdob=<%=userData.getUserDob()%>&Usermailid=<%=userData.getUserEmail()%>
-            &Usermobileno=<%=userData.getUserMobileNumber()%>">Update Profile</a></li>
-            <li><a href="manageWallet.jsp">Manage Wallet</a></li>
+            <li><a href="updateUser.jsp?Username=${userData.getUserName()}&Userdob=${userData.getUserDob()}&Usermailid=${userData.getUserEmail()}
+            &Usermobileno=${userData.getUserMobileNumber()}">Update Profile</a></li>
+            <li><a href="ManageWalletController">Manage Wallet</a></li>
             <li>  <a href="BookingHistoryController">Bookings</a></li>
               <li>  <a href="logout11">Logout</a></li>
 <li> <div id="username"><label for="username">
-     Hello _ <%=userData.getUserName() %></label></div>
-<%System.out.println(userData.getUserName()); %> 
+     Hello _ ${userData.getUserName()}</label></div>
+ 
     </li>
             
 

@@ -1,6 +1,5 @@
 package in.berbin.controller;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.annotation.WebServlet;
@@ -9,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import in.berbin.daoimpl.*;
-import in.berbin.model.*;
-import in.berbin.dao.*;
-import in.berbin.util.*;
-
-
-import javax.servlet.http.HttpServlet;
+import in.berbin.daoimpl.BookingDetailsDaoImpl;
+import in.berbin.daoimpl.TrainDaoImpl;
+import in.berbin.daoimpl.UserDaoImpl;
+import in.berbin.model.BookingDetails;
+import in.berbin.model.Trains;
+import in.berbin.model.Users;
 @WebServlet("/booking")
 public class TicketBookingController extends HttpServlet {
 
+@Override
 public void service(HttpServletRequest req,HttpServletResponse res) {
         
         HttpSession session=req.getSession();
@@ -73,8 +72,8 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
     }
     else {	
 		try {
-			session.setAttribute("userHome", "lowbalance");
-			res.sendRedirect("toAddAmount.jsp");
+			session.setAttribute("lowbalance", "lowbalance please recharge");
+			res.sendRedirect("ManageWalletController");
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

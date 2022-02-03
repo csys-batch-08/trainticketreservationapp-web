@@ -5,10 +5,11 @@
     
     <%@page import="in.berbin.model.*"%>
         <%@page import="javax.servlet.http.HttpSession" %>
-         <%HttpSession session2=request.getSession();%> 
+         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+       <%--   <%HttpSession session2=request.getSession();%> 
              <% Users userData=(Users)session2.getAttribute("userdata");%>
              <%UserDaoImpl userDao=new UserDaoImpl();
-               Users userModel=userDao.getUserDetailsById(userData.getUserId());  %>
+               Users userModel=userDao.getUserDetailsById(userData.getUserId());  %> --%>
      
 <!DOCTYPE html>
 <html>
@@ -76,10 +77,19 @@ input{
     height: 40px;
     
 }
+
+#errorMsg{
+color: white;
+}
 </style>
 </head>
 <body>
 <div class="signup">
+
+		<c:if test="${lowbalance!=null}">	
+			<h3 id="errorMsg" >${lowbalance}</h3>
+			</c:if>
+		<c:remove var="lowbalance" scope="session" />
         <form action="toAddAmount.jsp">
         <h2 class="SignUphere">Manage Wallet</h2>
         <table id="logintable">
@@ -88,13 +98,13 @@ input{
             <tr>
                 <th><label for="UserName">UserName:</label>
                 <td>
-                 <input type="text" name="username" value=<%=userModel.getUserName() %> disabled="disabled" id="username"  required><br><br></th>
+                 <input type="text" name="username" value="${userModel.getUserName()}" disabled="disabled" id="username"  required><br><br></th>
                  </td>
              </tr>
             <tr>
                <th><label for="available balance">Available Balance:</label>
                    <td>
-                <input type="text" name="" id="availablebalance" value=<%=userModel.getUserwallet() %> disabled="disabled" required><br><br></th>
+                <input type="text" name="" id="availablebalance" value="${userModel.getUserwallet()}" disabled="disabled" required><br><br></th>
                             </td>
             </tr>
             
@@ -109,7 +119,7 @@ input{
             </tr>
         </table>
     </form>
-     <a href="userHomePage.jsp"><button type="submit" id="ressignup" class="buttonsignup">Back to HomePage</button></a>
+     <a href="UserHomePageController"><button type="submit" id="ressignup" class="buttonsignup">Back to HomePage</button></a>
     </div>
 </body>
 </html>

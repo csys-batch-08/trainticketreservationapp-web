@@ -36,6 +36,7 @@ public class FilterTrainController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -44,6 +45,7 @@ public class FilterTrainController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -66,10 +68,12 @@ public class FilterTrainController extends HttpServlet {
                   
                   
                   try {
-               		List<Trains> filtered=trainDao.searchTrain(date1, source, destination);				
-					request.setAttribute("FilteredTrain",filtered);
+               		List<Trains> filtered=trainDao.searchTrain(date1, source, destination);	
+               		request.setAttribute("FilteredTrain",filtered);
+					System.out.println(filtered);
 					RequestDispatcher rd=request.getRequestDispatcher("filtertrain.jsp");
 					rd.forward(request, response);
+               		
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

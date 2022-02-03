@@ -57,7 +57,7 @@
         </ul> <br>
         <hr> <br>
 <center>
-        <button class="btn btn-secondary"><a href="userHomePage.jsp">Home</a>
+        <button class="btn btn-secondary"><a href="UserHomePageController">Home</a>
 </body></button></center>
 </section>
 

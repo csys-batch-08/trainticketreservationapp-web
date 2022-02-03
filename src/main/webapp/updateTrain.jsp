@@ -139,7 +139,7 @@ left: 30px;
                     <th>
                         <label for="trainsource">Train Source:</label>
                            <td>
-                        <input type="text" name="trainsource" pattern="[a-zA-Z]+" id="trainsource" value="${param.source}" ><br><br>
+                        <input type="text" name="trainsource"  id="trainsource" value="${param.source}" ><br><br>
                                </td>
                     </th>
                 </tr>
@@ -147,7 +147,7 @@ left: 30px;
                     <th>
                         <label for="traindestination">Train Destination:</label>
                               <td>
-                        <input type="text" name="traindestination" id="trdestination" pattern="[a-zA-Z]+" value="${param.destination}"  placeholder="Enter train destination" ><br><br>
+                        <input type="text" name="traindestination" id="trdestination" value="${param.destination}"  placeholder="Enter train destination" ><br><br>
                        </td>
                     </th>
                 </tr>

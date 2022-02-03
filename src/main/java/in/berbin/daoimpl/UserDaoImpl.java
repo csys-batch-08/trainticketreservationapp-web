@@ -13,6 +13,7 @@ import in.berbin.model.Users;
 import in.berbin.util.ConnectionUtil;
 
 public class UserDaoImpl implements UserDAO {
+	@Override
 	public Users loginUser(long UserMobileNumber ) {
 
 		String userLogin = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobileNumber=?";
@@ -40,6 +41,7 @@ public class UserDaoImpl implements UserDAO {
 	
 
 	
+	@Override
 	public boolean signUpUser(Users userModel) {
 
 		String insertUser = "insert into users (user_name,user_dob,user_email,user_mobilenumber,user_gender,user_password) values (?,?,?,?,?,?)";
@@ -73,7 +75,8 @@ public class UserDaoImpl implements UserDAO {
 	
 	
 	
-    public void update (Users UserModule) throws ClassNotFoundException, SQLException {
+    @Override
+	public void update (Users UserModule) throws ClassNotFoundException, SQLException {
     	
     	String update="update users set user_name=?, user_dob=?, user_mobilenumber=?, user_gender=?, user_password=? where user_email='"+UserModule.getUserEmail()+"'";
     	
@@ -93,7 +96,8 @@ public class UserDaoImpl implements UserDAO {
     }
 	
     
-    public void delete (Users UserModule) throws ClassNotFoundException, SQLException {
+    @Override
+	public void delete (Users UserModule) throws ClassNotFoundException, SQLException {
 		
 		String del="delete from users where user_id=?";
 		
@@ -108,7 +112,8 @@ public class UserDaoImpl implements UserDAO {
 	}
     
 
-    public List<Users> showAllUsers()
+    @Override
+	public List<Users> showAllUsers()
     {
     	List<Users> userList = new ArrayList<Users>();
     	String showusersquery="select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users";
@@ -138,7 +143,8 @@ public class UserDaoImpl implements UserDAO {
     	return userList;
     }
     //find userId 
-    public Users findUserDetails(long UserMobileNumber) {
+    @Override
+	public Users findUserDetails(long UserMobileNumber) {
     	String findUserDetailsQuery="select * from users where user_mobilenumber='" + UserMobileNumber+"'";
     	Connection con = null;
     	Statement stmt = null;
@@ -179,6 +185,7 @@ public class UserDaoImpl implements UserDAO {
 		return result > 0;
 
 	}
+	@Override
 	public Users getUserDetailsById(int userId) 
 	{ 
 
@@ -200,22 +207,23 @@ public class UserDaoImpl implements UserDAO {
 			con.close();
 			pstatement.close();
 		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+		     e.getMessage();
 		}
 		return userModel;
 
 	}
+	@Override
 	public boolean checkUser(long userMobileNumber ) {
 
-		String userLogin = "select user_id from users where user_mobilenumber=?";
+		String userLogin = "select * from users where user_mobilenumber=" + userMobileNumber;
 		Connection con;
 		boolean checkUserFlag = true;
 		try {
 			con = ConnectionUtil.getDBconnect();
 			PreparedStatement pstatement = con.prepareStatement(userLogin);
-			pstatement.setLong(1, userMobileNumber);
+
 			int i = pstatement.executeUpdate(userLogin);
 			if (i > 0) {
 				checkUserFlag = true;
@@ -231,6 +239,7 @@ public class UserDaoImpl implements UserDAO {
 
 		return checkUserFlag;
 	}
+	@Override
 	public boolean checkExistingUserWhileRegister(long userMobileNumber) {
 
 		String checkUser = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobilenumber	=?";

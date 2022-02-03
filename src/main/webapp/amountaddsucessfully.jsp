@@ -5,7 +5,7 @@
     
     <%@page import="in.berbin.model.*"%>
         <%@page import="javax.servlet.http.HttpSession" %>
-        <%HttpSession session2=request.getSession();%> 
+     <%--    <%HttpSession session2=request.getSession();%> 
              <% Users userData=(Users)session2.getAttribute("userdata");
              UserDaoImpl userDao=new UserDaoImpl();
                Users userModel=userDao.getUserDetailsById(userData.getUserId());
@@ -20,7 +20,7 @@
              		  userModel.getUserMobileNumber(),userModel.getUserGender(),userModel.getUserPassword(),totalAmount);
                session.setAttribute("userdata2", userModel1);
            
-             %> 
+             %>  --%>
              <!DOCTYPE html>
 <html>
 <head>
@@ -93,7 +93,7 @@ h6{
 </head>
 <body>
 <div class="signup">
-        <form action="UserHomePage.jsp">
+        <form action="UserHomePageController">
         <h2 class="SignUphere">Manage Wallet</h2>
         <table id="logintable">
             <h6>Please Confirm to add money in wallet</h6>
@@ -107,7 +107,7 @@ h6{
             </tr>
         </table>
     </form>
-     <a href="userHomePage.jsp"><button type="submit" id="ressignup" class="buttonsignup">Back to HomePage</button></a>
+     <a href="UserHomePageController"><button type="submit" id="ressignup" class="buttonsignup">Back to HomePage</button></a>
     </div>
 </body>
 </html>

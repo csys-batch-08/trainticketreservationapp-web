@@ -56,7 +56,7 @@ else {
 
 try {
 session.setAttribute("userHome", "cancelationsucess");
-res.sendRedirect("UserHomePage.jsp");
+res.sendRedirect("UserHomePageController");
 } catch (IOException e) {
 // TODO Auto-generated catch block
 e.printStackTrace();

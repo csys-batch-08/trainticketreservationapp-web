@@ -103,6 +103,13 @@
          #busId:hover{
             background-color:rgb(113, 99, 177);
          }
+         
+         #errorMsg{
+         position: absolute;
+         top:350px;
+         left:560px;
+         }
+        
         </style>
 </head>
 <body>
@@ -146,6 +153,12 @@
 <br>
 <br>
 
+
+<c:if test="${empty FilteredTrain}">	
+<h3 id="errorMsg" >No Train Available</h3>
+</c:if>
+
+
 <tbody>
  <c:set var="i" value="0"/> 
 <c:forEach items="${FilteredTrain}" var="filterTrainList">
@@ -169,7 +182,7 @@
                    
 </table></table></div></fieldset></div></form><br><br> 
 <center> 
-<a href="userHomePage.jsp"><button class="btn btn-outline-primary">Back to HomePage</button></a> 
+<a href="UserHomePageController"><button class="btn btn-outline-primary">Back to HomePage</button></a> 
 </center>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>               
 </body>

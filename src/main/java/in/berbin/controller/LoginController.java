@@ -3,6 +3,7 @@ package in.berbin.controller;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -83,10 +84,12 @@ try {
 throw new LoginException();
 }
 catch(LoginException e) {
-session.setAttribute("errors", e.getMessage());
+//session.setAttribute("errors", e.getMessage());
 try {
-	res.sendRedirect("index.jsp");
-} catch (IOException e1) {
+	req.setAttribute("errors", e.getMessage());
+	RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+rd.forward(req, res);
+} catch (IOException | ServletException e1) {
 	// TODO Auto-generated catch block
 	e1.printStackTrace();
 }}
@@ -109,7 +112,7 @@ if(userModel.getUserPassword().equals(password)) {
 try {
 session.setAttribute("userdata", userModel);
 session.setAttribute("userHome", "loginSession");
-res.sendRedirect("userHomePage.jsp");
+res.sendRedirect("UserHomePageController");
 } catch (IOException e) {
 System.out.println(e.getMessage());
 }
@@ -128,8 +131,17 @@ throw new LoginException();
 }
 catch(LoginException e) {
 	
-	session.setAttribute("errors", e.getMessage());
+	
 	try {
+		//session.setAttribute("errors", e.getMessage());
+		req.setAttribute("errors", e.getMessage());
+		RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+		try {
+			rd.forward(req, res);
+		} catch (ServletException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		res.sendRedirect("index.jsp");
 	} catch (IOException e1) {
 		// TODO Auto-generated catch block

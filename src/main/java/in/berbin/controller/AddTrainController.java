@@ -27,29 +27,21 @@ public class AddTrainController extends HttpServlet {
 	int ticketprice=Integer.parseInt(req.getParameter("ticketprice"));
 	Trains trainModel=new Trains(trainname,trainclass,trainnumber,trainsource,traindestination,traindeparture,trainarraival,totalseat,ticketprice);
 	TrainDaoImpl TrainDao=new TrainDaoImpl();
-	try {
-		TrainDao.insertTrain(trainModel);
-		if(TrainDao!=null) {
-			try {
-				res.sendRedirect("adminHome.jsp");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else {
-			try {
-				res.getWriter().print("Train is not added!");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	TrainDao.insertTrain(trainModel);
+	if(TrainDao!=null) {
+		try {
+			res.sendRedirect("adminHome.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	}else {
+		try {
+			res.getWriter().print("Train is not added!");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	}
 	

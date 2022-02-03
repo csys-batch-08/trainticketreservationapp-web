@@ -81,7 +81,7 @@ margin-bottom:30px;
 		
 	</div>
 </form>
-	<div class="col-sm-6"></div><a href="userHomePage.jsp"><button class="btn btn-danger">Back</button></a></div>
+	<div class="col-sm-6"></div><a href="UserHomePageController"><button class="btn btn-danger">Back</button></a></div>
 </body>
 
 <script type="text/javascript">

@@ -41,7 +41,7 @@ public class SignupController extends HttpServlet {
 				System.out.println(signUpFlag);
 				if (signUpFlag) {
 					try {
-						res.sendRedirect("login.jsp");
+						res.sendRedirect("index.jsp");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

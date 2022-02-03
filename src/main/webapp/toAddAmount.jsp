@@ -79,7 +79,7 @@ th {
 </style>
 </head>
 <body>
- <form action="amountaddsucessfully.jsp" >
+ <form action="RechargeWalletController" >
 <div class="signup">
        
         <h2 class="SignUphere">Manage Wallet</h2>
@@ -103,7 +103,7 @@ th {
                 <br>
                <tr>
                <th> <button class="buttonsignup" id="subsignup" type="submit" >Click to add</button></th>
-                <a href="userHomePage.jsp"><button type="submit" id="ressignup"class="buttonsignup">Back to Home</button></a>
+                <a href="UserHomePageController"><button type="submit" id="ressignup"class="buttonsignup">Back to Home</button></a>
               
             </tr>
              

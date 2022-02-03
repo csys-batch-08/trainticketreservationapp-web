@@ -62,6 +62,7 @@ div,input{
 button{
      height: 35px;
     width: 80px;
+    
     background-color: rgb(127, 127, 221);
     outline: none;
     border: none; */
@@ -115,11 +116,11 @@ Special Trains will available on special occasion!!</h2>
         <table id="logintable">
             <tr>
                 <th><img src="Assests/usericon.png" alt="" ></th>
-                <th><input type="text" name="logincredentials"  placeholder="Enter your Mobile Number" required ><br><br></th>
+                <th><input type="text" name="logincredentials"  placeholder="Enter your Mobile Number" onkeyup="hideMsg()" required ><br><br></th>
             </tr>
             <tr>
                 <th><img src="Assests/passwordicon.png" alt=""></th>
-                <th><input type="password" name="password" pattern="[a-zA-Z0-9@#]{8,16}" placeholder="Enter your Password" required><br><br></th>
+                <th><input type="password" name="password" pattern="[a-zA-Z0-9@#]{8,16}" placeholder="Enter your Password" onkeyup="hideMsg()" required><br><br></th>
             </tr>
             
         </table>
@@ -130,15 +131,26 @@ Special Trains will available on special occasion!!</h2>
             <label for="signup">Don't have an account ? </label>
             <a id="signup" href="signup.jsp">SignUp</a>
  
-<%String message=(String) session.getAttribute("errors");
+<%-- <%String message=(String) session.getAttribute("errors");
     if(message!=null){
     %>
-   <center><h2><%=message %></h2></center>
-    <%} %>
+   <%=message %>
+    <%} %> --%>
+    <c:if test="${errors!=null}">	
+			<center><h2 id="errorMsg" >${errors}</h2></center>
+			</c:if>
+		<c:remove var="errors" scope="session" />
         </form> 
         
 
  </div>
+ <script type="text/javascript">
+ function hideMsg()
+ {
+ 	document.getElementById("errorMsg").style.visibility="hidden";
+ 	
+ 	}
+ </script>
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 </body>

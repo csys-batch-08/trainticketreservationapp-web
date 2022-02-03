@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,11 +127,11 @@ input{
            <th> <button class="buttonsignup"id="ressignup" type="reset">Reset</button></th>
         </tr>
     </table>
-    <%String errorMsg=(String)session.getAttribute("registerMessage");
-        if(errorMsg!=null){%>
-        <h4 id="errormsg"><%=errorMsg %></h4>
-        <%}
-        session.removeAttribute("registerMessage");%> 
+    
+        <c:if test="${registerMessage!=null}">	
+			<h3 id="errormsg" >${registerMessage}</h3>
+			</c:if>
+		<c:remove var="registerMessage" scope="session" />
 </form>
 </div>
 <script type="text/javascript">
