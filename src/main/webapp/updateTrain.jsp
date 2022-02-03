@@ -1,6 +1,7 @@
 <%@page import="javax.websocket.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,12 +109,11 @@ left: 30px;
         <form action="updatetrainpage">
         <h2 class="Entertrdetails">Update Train Details</h2>
         <table id="logintable">
-    <%
-    String error  = (String)session.getAttribute("updateerror");
-
-    
-    %>        
-            
+          
+       <c:if test="${updateerror!=null}">	
+			<h3 id="errorMsg" >${updateerror}</h3>
+			</c:if>
+		<c:remove var="lowbalance" scope="session" />     
             <tr>
                <th><label for="trainname">Train Name:</label>
                <td>

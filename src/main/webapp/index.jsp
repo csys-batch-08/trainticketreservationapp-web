@@ -126,16 +126,10 @@ Special Trains will available on special occasion!!</h2>
         </table>
             
             <button class="btn btn-primary btn-block" id="buttonlogin">Login</button><br><br>
-            <!-- <a href="forgetPassword.html">Forget Password?</a><br><br> -->
 
             <label for="signup">Don't have an account ? </label>
             <a id="signup" href="signup.jsp">SignUp</a>
- 
-<%-- <%String message=(String) session.getAttribute("errors");
-    if(message!=null){
-    %>
-   <%=message %>
-    <%} %> --%>
+
     <c:if test="${errors!=null}">	
 			<center><h2 id="errorMsg" >${errors}</h2></center>
 			</c:if>
@@ -152,6 +146,5 @@ Special Trains will available on special occasion!!</h2>
  	}
  </script>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 </body>
 </html>

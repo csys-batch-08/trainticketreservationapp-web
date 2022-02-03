@@ -6,9 +6,6 @@
     <%@page import="in.berbin.daoimpl.UserDaoImpl" %>
     <%@page import="javax.servlet.http.HttpSession" %>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   <%--  <%HttpSession session1=request.getSession();
-      Users userData=(Users)session1.getAttribute("userdata");
-      System.out.println(userData);%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -191,8 +188,6 @@ background-size: cover;
 
     <div id="nav">
         <ul>
-          
-         <!--    <li><a href="Searchtrain.jsp">Train</a></li> -->
           <img id="logo" src="Assests/trainlogo.png">
             <li><a href="aboutUs.jsp">About us</a></li>
             <li><a href="updateUser.jsp?Username=${userData.getUserName()}&Userdob=${userData.getUserDob()}&Usermailid=${userData.getUserEmail()}
@@ -204,10 +199,7 @@ background-size: cover;
      Hello _ ${userData.getUserName()}</label></div>
  
     </li>
-            
-
-
-    <form action="FilterTrainController" method="post">
+        <form action="FilterTrainController" method="post">
         <div id="searchlocation">
             <table>
                 <tr>

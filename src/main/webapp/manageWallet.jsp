@@ -6,10 +6,6 @@
     <%@page import="in.berbin.model.*"%>
         <%@page import="javax.servlet.http.HttpSession" %>
          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-       <%--   <%HttpSession session2=request.getSession();%> 
-             <% Users userData=(Users)session2.getAttribute("userdata");%>
-             <%UserDaoImpl userDao=new UserDaoImpl();
-               Users userModel=userDao.getUserDetailsById(userData.getUserId());  %> --%>
      
 <!DOCTYPE html>
 <html>

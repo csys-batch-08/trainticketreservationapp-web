@@ -4,7 +4,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="in.berbin.daoimpl.TrainDaoImpl"%>
 <%@page import="java.time.LocalDate"%>
-<%-- <%@page import="com.trainticketreservation.model.*"%> --%>
 <%@page import="in.berbin.model.*"%>
 <%@page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -58,16 +57,7 @@
              margin-left: 2px;
              
          }
-         /* #forcontent{
-            border: 1px solid rgb(32, 32, 32);
-             padding: 20px;
-             border-bottom: none;
-             border-radius: 10px 10px 0px 0px;
-             height: 20px;
-             background-color:rgb(113, 99, 177);
-             color: white;
-             margin-top: -15px;
-         } */
+         
          #forcontent ul li{
             padding: 3px;
          }

@@ -5,16 +5,7 @@
       <%@page import="in.berbin.daoimpl.UserDaoImpl"%>
     <%@page import="java.time.LocalDate"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-  <%--   <% TrainDaoImpl trainDao=new TrainDaoImpl();
-    UserDaoImpl userDao=new UserDaoImpl();
-     Users userData=(Users)session.getAttribute("userdata");
-     //to get train details
-     int trainid=Integer.parseInt(request.getParameter("traindetails"));
-     
-     session.setAttribute("presenttrain", trainid);
-     Trains trainModel=trainDao.findTrainsDetailsUsingID(trainid);
-     Users userModel=userDao.getUserDetailsById(userData.getUserId());
-     %> --%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +15,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-   /*   body{
-    background: url(https://images.squarespace-cdn.com/content/v1/5a3bb03b4c326d76de73ddaa/1622559786569-F4UVF7274QAKJHWD00UM/The_Common_Wanderer_india_train_travel_tips-17_1.jpg?format=1500w);
-    background-size: cover;
-    filter: blur();
-    
-    
-} */
+
        
         input{
             border-top: none;

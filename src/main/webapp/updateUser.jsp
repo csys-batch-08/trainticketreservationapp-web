@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,20 +80,20 @@ input{
            <th><label for="fullname">FullName:</label>
            <td>
             <input type="text" name="fullname" id="fullname" placeholder="Enter your FullName" pattern="[A-Za-z]{3,20}" autofocus="autofocus"
-            value = "<%=request.getParameter("Username") %>" required><br><br></th>
+            value="${param.Username}" required><br><br></th>
             </td>
         </tr>
         <tr>
             <th><label for="regage">DOB:</label>
                <td>
-            <input type="date" name="dob"  value="<%=request.getParameter("Userdob") %>" id="regage" ><br><br></th>
+            <input type="date" name="dob"   value="${param.Userdob}"id="regage" ><br><br></th>
                    </td>
         </tr>
         <tr>
             <th>
                 <label  for="regemail">Email:</label>
                  <td>
-                <input type="email" name="email" id="regemail" value="<%=request.getParameter("Usermailid")%>"  readonly><br><br>
+                <input type="email" name="email" id="regemail"  value="${param.Usermailid}"  readonly><br><br>
                    </td>
             </th>
         </tr>
@@ -110,7 +111,7 @@ input{
                 <th>
                     <label for="regmobilenum">MobileNo:</label>
                                 <td>
-                    <input type="tel" name="mobileno" id="regmobilenum" value="<%=request.getParameter("Usermobileno")%>" readonly><br><br>
+                    <input type="tel" name="mobileno" id="regmobilenum"  value="${param.Usermobileno}" readonly><br><br>
                                               </td>
                 </th>
             </tr>
@@ -126,7 +127,6 @@ input{
             
             <tr>
            <th> <button class="buttonsignup" id="subsignup" type="submit">Submit</button></th>
-        <!--    <th> <button class="buttonsignup"id="ressignup" type="reset">Reset</button></th> -->
   
         </tr>
     </table>

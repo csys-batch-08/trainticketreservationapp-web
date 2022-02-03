@@ -5,22 +5,7 @@
     
     <%@page import="in.berbin.model.*"%>
         <%@page import="javax.servlet.http.HttpSession" %>
-     <%--    <%HttpSession session2=request.getSession();%> 
-             <% Users userData=(Users)session2.getAttribute("userdata");
-             UserDaoImpl userDao=new UserDaoImpl();
-               Users userModel=userDao.getUserDetailsById(userData.getUserId());
-              
-               int amountEntered=Integer.parseInt(request.getParameter("ammounttoaddinwallet"));
-               System.out.println(amountEntered);
-               int totalAmount=amountEntered+userData.getUserwallet();
-               userDao.updateWallet(amountEntered,userData.getUserId() );
-             
-               
-               Users userModel1=new Users(userModel.getUserId(),userModel.getUserName(),userModel.getUserDob(),userModel.getUserEmail(),
-             		  userModel.getUserMobileNumber(),userModel.getUserGender(),userModel.getUserPassword(),totalAmount);
-               session.setAttribute("userdata2", userModel1);
-           
-             %>  --%>
+  
              <!DOCTYPE html>
 <html>
 <head>
