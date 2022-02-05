@@ -14,8 +14,6 @@ import javax.servlet.http.HttpSession;
 import in.berbin.daoimpl.AdminDaoImpl;
 import in.berbin.daoimpl.UserDaoImpl;
 import in.berbin.exception.LoginException;
-
-
 import in.berbin.model.Admins;
 import in.berbin.model.Users;
 
@@ -29,6 +27,7 @@ public class LoginController extends HttpServlet{
 	}
 	
 
+@Override
 public void service(HttpServletRequest req,HttpServletResponse res) {
 
 HttpSession session=req.getSession();
@@ -49,7 +48,6 @@ if(loginId.endsWith("@admin.com")) {
 try {
 
 adminModel=adminDao.adminLogin(loginId);
-System.out.println(adminModel);
 if(adminModel!=null) {
 	
 try {
@@ -72,7 +70,6 @@ catch(LoginException e) {
 	try {
 		res.sendRedirect("index.jsp");
 	} catch (IOException e1) {
-		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
 }
@@ -80,11 +77,9 @@ catch(LoginException e) {
 }
 else if (loginId.contains("@admin.com") == false && loginId.matches("[0-9]+") == false) {
 try {
-// session.setAttribute("erroruserid", "user name mismatch");
 throw new LoginException();
 }
 catch(LoginException e) {
-//session.setAttribute("errors", e.getMessage());
 try {
 	req.setAttribute("errors", e.getMessage());
 	RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
@@ -100,14 +95,10 @@ rd.forward(req, res);
 else {
 boolean userCheckFlag;
 long userId=Long.parseLong(loginId);
-
-System.out.println(userId);
 userCheckFlag=userDao.checkUser(userId);
 try {
 if(userCheckFlag) {
 userModel=userDao.loginUser(userId);
-System.out.println(userModel.getUserPassword());
-
 if(userModel.getUserPassword().equals(password)) {
 try {
 session.setAttribute("userdata", userModel);
@@ -133,18 +124,15 @@ catch(LoginException e) {
 	
 	
 	try {
-		//session.setAttribute("errors", e.getMessage());
 		req.setAttribute("errors", e.getMessage());
 		RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 		try {
 			rd.forward(req, res);
 		} catch (ServletException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		res.sendRedirect("index.jsp");
 	} catch (IOException e1) {
-		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
 }

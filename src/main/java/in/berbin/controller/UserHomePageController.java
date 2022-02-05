@@ -12,16 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import in.berbin.model.Users;
 
-/**
- * Servlet implementation class UserHomePageController
- */
 @WebServlet("/UserHomePageController")
 public class UserHomePageController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-  
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		 HttpSession session1=request.getSession();
 	      Users userData=(Users)session1.getAttribute("userdata");
 	      request.setAttribute("userData", userData);

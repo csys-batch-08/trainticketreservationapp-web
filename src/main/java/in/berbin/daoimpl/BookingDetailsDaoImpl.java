@@ -32,19 +32,13 @@ public boolean bookTicket(Users userModel,Trains trainModel, BookingDetails book
 		result=	pstmt.executeUpdate();
 		
 	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return result>0;
 }
 	
-
-
-
-
 public boolean cancelTicket(Users userModel1,BookingDetails booking,Trains train,int totalAmount) {
 	
 	int totalseat = booking.getTicketCount() + train.getTotalseat();
@@ -58,27 +52,15 @@ public boolean cancelTicket(Users userModel1,BookingDetails booking,Trains train
 		PreparedStatement pstatement=con.prepareStatement(toCancel);
 		PreparedStatement pstwallet=con.prepareStatement(refund);
 		PreparedStatement pstseat=con.prepareStatement(seats);
-		
 		result = pstatement.executeUpdate();
-		
-		result = pstwallet.executeUpdate();
-		
-		result = pstseat.executeUpdate();
-		
-	
-		
+		result = pstwallet.executeUpdate();		
+		result = pstseat.executeUpdate();		
 	}catch(Exception  e) {
 		System.out.println(e.getMessage());
 	}
 	
 	return result>0;
 }
-	
-
-
-
-
-
 //to show booking history of particular user
 
 public List<BookingDetails>getBookingDetailsForPresentUser(Users userModel){
@@ -99,19 +81,12 @@ public List<BookingDetails>getBookingDetailsForPresentUser(Users userModel){
 		rs=pstmt.executeQuery();
 		while(rs.next()) {
 			Trains trains = new Trains(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getString(6),rs.getTimestamp(7).toLocalDateTime(),rs.getTimestamp(8).toLocalDateTime(),rs.getInt(9),rs.getInt(10));
-	
 			BookingDetails bookingDetailsModel=new BookingDetails(userModel,trains,rs.getLong(12),rs.getDate(13).toLocalDate(),rs.getDate(14).toLocalDate(),rs.getInt(15),rs.getInt(16),rs.getString(17));
-		
-			bookingList.add(bookingDetailsModel);
-			
-			
-			
+			bookingList.add(bookingDetailsModel);			
 		}
 	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return bookingList;
@@ -184,10 +159,8 @@ public List<BookingDetails> showAllBookings()
 	try {
 		con=ConnectionUtil.getDBconnect();
 	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	try {
@@ -200,7 +173,6 @@ public List<BookingDetails> showAllBookings()
 		}
 		
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return allBookings;

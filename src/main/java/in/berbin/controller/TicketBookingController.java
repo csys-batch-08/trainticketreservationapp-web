@@ -1,6 +1,5 @@
 package in.berbin.controller;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +20,6 @@ public class TicketBookingController extends HttpServlet {
 public void service(HttpServletRequest req,HttpServletResponse res) {
         
         HttpSession session=req.getSession();
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         TrainDaoImpl trainDao=new TrainDaoImpl();
         UserDaoImpl userDao=new UserDaoImpl();
         BookingDetailsDaoImpl bookingdetailsDao=new BookingDetailsDaoImpl();
@@ -29,12 +27,8 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
         Users user=(Users)session.getAttribute("userdata");
         Users user1=userDao.getUserDetailsById(user.getUserId());
         //for low balance
-        user1=userDao.getUserDetailsById(user1.getUserId());
-        
-        Trains trainModel=(Trains)session.getAttribute("presenttrain");
-
-     
-       
+        user1=userDao.getUserDetailsById(user1.getUserId());        
+        Trains trainModel=(Trains)session.getAttribute("presenttrain");      
         int ticketCount=Integer.parseInt(req.getParameter("seatcount"));
         int totalPrice=Integer.parseInt(req.getParameter("totalprice"));
         
@@ -43,7 +37,6 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
         int updateAmountInWallet=user1.getUserwallet()-totalPrice;
         Users userModel=new Users(user1.getUserId(),user1.getUserName(),user1.getUserDob(),user1.getUserEmail(),user1.getUserMobileNumber(),
                 user1.getUserGender(),user1.getUserPassword(),updateAmountInWallet);
-         UserDaoImpl UserDao = new UserDaoImpl();
          userDao.updateWallet(updateAmountInWallet, user.getUserId());
       
         int updateSeatCount=trainModel.getTotalseat()-ticketCount;
@@ -65,10 +58,7 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-        }
-        
-        
-        
+        }        
     }
     else {	
 		try {

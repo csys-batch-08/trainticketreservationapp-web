@@ -16,7 +16,6 @@ import in.berbin.model.Users;
 public class ManageWalletController extends HttpServlet {
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	// TODO Auto-generated method stub
 	  HttpSession session2=req.getSession();
       Users userData=(Users)session2.getAttribute("userdata");
       UserDaoImpl userDao=new UserDaoImpl();

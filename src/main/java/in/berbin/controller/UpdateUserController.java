@@ -14,25 +14,15 @@ import in.berbin.model.Users;
 @WebServlet("/updateuser")
 public class UpdateUserController extends HttpServlet {
 	@Override
-	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException {
-	    
-		// DateTimeFormatter dateFormat=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		
+	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException {		
 		String name=req.getParameter("fullname");
-		System.out.println(name);
 		String email=req.getParameter("email");
-		System.out.println(email);
 		long mobile=Long.parseLong(req.getParameter("mobileno"));
-		System.out.println(mobile);
 		String password=req.getParameter("password");
-		System.out.println(password);
 		LocalDate dob=LocalDate.parse(req.getParameter("dob"));
-		//System.out.println(dob.format(dateFormat));
 		String gender=req.getParameter("gender");
-		System.out.println(gender);
 		Users userModel=new Users(name,dob,email,mobile,gender,password);
-		UserDaoImpl userDao=new UserDaoImpl();
-		
+		UserDaoImpl userDao=new UserDaoImpl();		
 		try {
 			userDao.update(userModel);
 			if(userDao!=null) {
@@ -43,10 +33,8 @@ public class UpdateUserController extends HttpServlet {
 			}
 			
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

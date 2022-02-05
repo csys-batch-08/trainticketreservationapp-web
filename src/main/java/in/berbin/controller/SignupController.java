@@ -1,9 +1,7 @@
 package in.berbin.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +21,7 @@ public class SignupController extends HttpServlet {
 
 	UserDaoImpl userDao = new UserDaoImpl();
 
+	@Override
 	public void service(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
 
@@ -43,7 +42,6 @@ public class SignupController extends HttpServlet {
 					try {
 						res.sendRedirect("index.jsp");
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				} else {

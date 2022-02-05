@@ -1,7 +1,6 @@
 package in.berbin.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +14,7 @@ import in.berbin.model.Trains;
 @WebServlet("/updatetrainpage")
 public class UpdateTrainController extends HttpServlet {
 
+	@Override
 	public void service(HttpServletRequest req,HttpServletResponse res) {
 		String trainname=req.getParameter("trainname");
 		String trainclass=req.getParameter("trainclass");

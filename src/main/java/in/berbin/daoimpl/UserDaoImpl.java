@@ -90,7 +90,6 @@ public class UserDaoImpl implements UserDAO {
 		ps.setString(5, UserModule.getUserPassword());
 		
 		int result=ps.executeUpdate();
-		System.out.println(result+ " is updated !!");
 		ps.close();
 		con.close();
     }
@@ -106,7 +105,6 @@ public class UserDaoImpl implements UserDAO {
 		
 		ps.setInt(1, UserModule.getUserId());
 		int res=ps.executeUpdate();
-		System.out.println(res + "is deleted");
 		ps.close();
 		con.close();		
 	}
@@ -122,10 +120,8 @@ public class UserDaoImpl implements UserDAO {
     	try {
 			con = ConnectionUtil.getDBconnect();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	try {
@@ -137,7 +133,6 @@ public class UserDaoImpl implements UserDAO {
 				userList.add(userModel);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	return userList;
@@ -217,7 +212,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public boolean checkUser(long userMobileNumber ) {
 
-		String userLogin = "select * from users where user_mobilenumber=" + userMobileNumber;
+		String userLogin = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobilenumber=" + userMobileNumber;
 		Connection con;
 		boolean checkUserFlag = true;
 		try {

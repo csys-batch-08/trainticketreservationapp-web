@@ -1,7 +1,6 @@
 package in.berbin.daoimpl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.berbin.model.Trains;
-import in.berbin.model.Users;
 import in.berbin.util.CloseConnection;
 import in.berbin.util.ConnectionUtil;
 
@@ -66,13 +64,14 @@ public class TrainDaoImpl {
 			ps.setTimestamp(6, arrivalDateTime);
 			ps.setInt(7, trainmodule.getTotalseat());
 			ps.setInt(8, trainmodule.getTicketPrice());
-			int result = ps.executeUpdate();
+		    ps.executeUpdate();
 			ps.close();
 			con.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void deletetrain(Trains trainmodule) {
@@ -81,7 +80,7 @@ public class TrainDaoImpl {
 			Connection con = ConnectionUtil.getDBconnect();
 			PreparedStatement ps = con.prepareStatement(deletetrainquery);
 			ps.setInt(1, trainmodule.getTrainNumber());
-			int result = ps.executeUpdate();
+			ps.executeUpdate();
 			ps.close();
 			con.close();
 		} catch (ClassNotFoundException e) {
@@ -94,16 +93,14 @@ public class TrainDaoImpl {
 	// to show all trains
 	public List<Trains> showAllTrains() {
 		List<Trains> trainList = new ArrayList<Trains>();
-		String listquery = "select*from trains";
+		String listquery = "select train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains";
 		Connection con = null;
 		PreparedStatement ps;
 		try {
 			con = ConnectionUtil.getDBconnect();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
@@ -117,7 +114,6 @@ public class TrainDaoImpl {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trainList;
@@ -131,10 +127,8 @@ public class TrainDaoImpl {
 		try {
 			con = ConnectionUtil.getDBconnect();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Statement stmt = null;
@@ -142,18 +136,14 @@ public class TrainDaoImpl {
 		try {
 			stmt = con.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			ResultSet rs = stmt.executeQuery(findTrainIdQuery);
-			if (rs.next()) {
-				// System.out.println(rs.getInt(1));
+			if (rs.next()) {				
 				trainId = rs.getInt(1);
-				// System.out.println(trainId);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trainId;
@@ -161,8 +151,7 @@ public class TrainDaoImpl {
 
 	// to find train details
 	public Trains findTrainDetailsUsingTrainNumber(int trainNumber) {
-		String findTrainDetails = "select*from trains where train_number = " + trainNumber;
-		// System.out.println(findTra``inDetails);
+		String findTrainDetails = "select train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains where train_number = " + trainNumber;
 		Connection con = null;
 		Trains trainModel1 = null;
 		Statement ps = null;
@@ -181,7 +170,6 @@ public class TrainDaoImpl {
 		}
 
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trainModel1;
@@ -195,7 +183,7 @@ public class TrainDaoImpl {
 
 		LocalDate ld = LocalDate();
 
-		String findTrain = "select*from trains where to_char(train_departure_time,'yyyy-mm-dd')='" + DepartureDate
+		String findTrain = "select train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains where to_char(train_departure_time,'yyyy-mm-dd')='" + DepartureDate
 				+ "' and train_source='" + source + "' and train_destination='" + destination + "'";
 
 		Trains trainModel;
@@ -218,13 +206,12 @@ public class TrainDaoImpl {
 	}
 
 	private LocalDate LocalDate() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 //to show all train and select on user's wish date
 
 	public List<Trains> searchAllTrain(String source, String destination) throws ClassNotFoundException, SQLException {
-		String findTrain = "select*from trains where train_source='" + source + "' and train_destination='"
+		String findTrain = "select train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains where train_source='" + source + "' and train_destination='"
 				+ destination + "'";
 		Connection con = null;
 		Statement stmt = null;
@@ -270,7 +257,7 @@ public class TrainDaoImpl {
 	// traindetails using id
 
 	public Trains findTrainsDetailsUsingID(int trainId) {
-		String getTrain = "select * from trains where train_id=?";
+		String getTrain = "select train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains where train_id=?";
 		Connection con = null;
 		PreparedStatement pstatement = null;
 		Trains trainModel = null;
