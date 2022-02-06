@@ -17,13 +17,14 @@ import in.berbin.model.Trains;
 @WebServlet("/TrainListController")
 public class TrainListController extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	    	      TrainDaoImpl trainDao = new TrainDaoImpl();
-	    	     List<Trains> trainList = new ArrayList<Trains>();
-	    	     trainList = trainDao.showAllTrains();
-	    	     request.setAttribute("AllTrains",trainList);
-	    	     RequestDispatcher rd=request.getRequestDispatcher("trainList.jsp");
-	    	     rd.forward(request, response);
+		TrainDaoImpl trainDao = new TrainDaoImpl();
+		List<Trains> trainList = new ArrayList<Trains>();
+		trainList = trainDao.showAllTrains();
+		request.setAttribute("AllTrains", trainList);
+		RequestDispatcher rd = request.getRequestDispatcher("trainList.jsp");
+		rd.forward(request, response);
 	}
 }
