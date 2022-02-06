@@ -16,7 +16,6 @@
    <br><br><br><br>
    <h4>To Confirm Cancellation Press OK(10% of totalprice will be deduced)</h4><br><br>
    <button class="btn btn-danger btn-block"  type="submit">OK</button><br><br>
-  
    </center>
    </div>
    </form>

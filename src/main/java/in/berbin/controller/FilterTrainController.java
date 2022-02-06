@@ -33,7 +33,6 @@ public class FilterTrainController extends HttpServlet {
                   try {
                		List<Trains> filtered=trainDao.searchTrain(date1, source, destination);	
                		request.setAttribute("FilteredTrain",filtered);
-					System.out.println(filtered);
 					RequestDispatcher rd=request.getRequestDispatcher("filtertrain.jsp");
 					rd.forward(request, response);
                		

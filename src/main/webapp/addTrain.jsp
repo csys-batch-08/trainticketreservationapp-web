@@ -105,8 +105,8 @@ left: 30px;
             <li><a href="adminHome.jsp">Profile</a></li>
             <li><a href="addTrain.jsp">Add Train</a></li>            
             <li><a href="TrainListController">Train list</a></li>            
-            <li><a href="UserList.jsp">User list</a></li>
-            <li><a href="BookingList.jsp">Booking list</a></li>
+            <li><a href="UserListController">User list</a></li>
+            <li><a href="BookingListForAdmin">Booking list</a></li>
         </ul>
     </div>
     <div class="addtrain">

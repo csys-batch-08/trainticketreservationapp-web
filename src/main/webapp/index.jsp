@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,19 +101,14 @@ height:100px;
     </style>
 </head>
 <body>
-
-
      <marquee width="100%" direction="left" height="300px">
-<!-- <img alt="" class="trainmarquee" src="https://clipart-best.com/img/train/train-clip-art-39.png"> -->
 <h2>Welcome to Train Ticket Reservation System.
 Special Trains will available on special occasion!!</h2>
 </marquee>
     <div class="login">
-        <form action="loginusers">
-   
+        <form action="loginusers">   
         <img id="trainpng" class="pngtitle" src="Assests/logintrainicon.jpg" alt="">
         <h2 class="loginhere" >LogIn Here!!</h2>
-
         <table id="logintable">
             <tr>
                 <th><img src="Assests/usericon.png" alt="" ></th>
@@ -134,9 +130,7 @@ Special Trains will available on special occasion!!</h2>
 			<center><h2 id="errorMsg" >${errors}</h2></center>
 			</c:if>
 		<c:remove var="errors" scope="session" />
-        </form> 
-        
-
+        </form>        
  </div>
  <script type="text/javascript">
  function hideMsg()

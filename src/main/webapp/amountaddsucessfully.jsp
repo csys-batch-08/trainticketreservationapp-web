@@ -81,11 +81,7 @@ h6{
         <form action="UserHomePageController">
         <h2 class="SignUphere">Manage Wallet</h2>
         <table id="logintable">
-            <h6>Please Confirm to add money in wallet</h6>
-          
-      
-      
-                <br>
+            <h6>Please Confirm to add money in wallet</h6><br>
                <tr>
                <th> <button class="buttonsignup" id="subsignup" type="submit" >Proceed to add</button></th>
 
