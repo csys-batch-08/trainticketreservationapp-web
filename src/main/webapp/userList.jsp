@@ -5,7 +5,7 @@
             <%@page import="in.berbin.daoimpl.UserDaoImpl"%>
             <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -56,15 +56,14 @@
 <h1><b>Users List</b></h1>
 <thead>
 <tr>
-<th>No</th>
- <th >User ID</th>
-<th>User Name</th>
-<th>User DOB</th>
-<th>User Email</th>
-<th>User MobileNO</th>
-<th>User Gender</th>
-<th>User Password</th>
-<th>User Wallet</th>
+<th id="no">No</th>
+<th id="id">User ID</th>
+<th id="name">User Name</th>
+<th id="dob">User DOB</th>
+<th id="email">User Email</th>
+<th id="mobile">User MobileNO</th>
+<th id="gender">User Gender</th>
+<th id="wallet">User Wallet</th>
 </tr>
 </thead>
 <br>
@@ -82,7 +81,6 @@
 <td>${userList.userEmail}</td>
 <td>${userList.userMobileNumber}</td>
 <td>${userList.userGender}</td>
-<td>${userList.userPassword}</td>
 <td>${userList.userwallet}</td>
 
 </tr>

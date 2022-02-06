@@ -124,7 +124,7 @@ input {
 					</td>
 				</tr>
 				<tr>
-					<th><label for="trainclass">Train Class:</label>
+					<th id="class" ><label for="trainclass">Train Class:</label>
 					<td><input type="text" name="trainclass" id="trclass"
 						pattern="[a-z A-Z]{2,8}" value="${param.TrainClass}"><br>
 						<br>
@@ -132,7 +132,7 @@ input {
 					</td>
 				</tr>
 				<tr>
-					<th><label for="trainnumber">Train Number:</label>
+					<th id="trnumber"><label for="trainnumber">Train Number:</label>
 					<td><input type="number" name="trainnumber" id="trnumber"
 						pattern="[0-9]" value="${param.TrainNumber}"
 						placeholder="Enter trainnumber" readonly="readonly"
@@ -141,20 +141,20 @@ input {
 				</tr>
 
 				<tr>
-					<th><label for="trainsource">Train Source:</label>
+					<th id="source"><label for="trainsource">Train Source:</label>
 					<td><input type="text" name="trainsource" id="trainsource"
 						value="${param.source}"><br> <br></td>
 					</th>
 				</tr>
 				<tr>
-					<th><label for="traindestination">Train Destination:</label>
+					<th id="dest"><label for="traindestination">Train Destination:</label>
 					<td><input type="text" name="traindestination"
 						id="trdestination" value="${param.destination}"
 						placeholder="Enter train destination"><br> <br></td>
 					</th>
 				</tr>
 				<tr>
-					<th><label for="traindeparturetime">Train Departure
+					<th id="departure"><label for="traindeparturetime">Train Departure
 							Time:</label>
 					<td><input type="datetime-local" name="traindeparturetime"
 						id="trdestime" value="${param.Departuretrain}"><br> <br></td>
@@ -162,21 +162,21 @@ input {
 					</th>
 				</tr>
 				<tr>
-					<th><label for="trainarrivaltime">Train Arrival Time:</label>
+					<th id="arraival"><label for="trainarrivaltime">Train Arrival Time:</label>
 					<td><input type="datetime-local" name="trainarrivaltime"
 						id="trarrtime" value="${param.Arrival}"
 						placeholder="Enter arrival time"><br> <br></td>
 					</th>
 				</tr>
 				<tr>
-					<th><label for="totalseat">Total Seat:</label>
+					<th id="seat"><label for="totalseat">Total Seat:</label>
 					<td><input type="number" name="totalseat" id="trtotalseat"
 						min="0" value="${param.totalseat}" placeholder="Enter total seat"><br>
 						<br></td>
 					</th>
 				</tr>
 				<tr>
-					<th><label for="ticketprice">Ticket Price:</label>
+					<th id="price"><label for="ticketprice">Ticket Price:</label>
 					<td><input type="number" name="ticketprice" id="trticketprice"
 						min="0" value="${param.ticketprice}"
 						placeholder="Enter ticket price"><br> <br></td>
@@ -184,7 +184,7 @@ input {
 				</tr>
 				<br>
 				<tr>
-					<th>
+					<th id="addtr">
 						<button class="buttonadd" id="addtr" type="submit">Submit</button>
 					</th>
 				</tr>
