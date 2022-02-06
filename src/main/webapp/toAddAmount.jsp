@@ -6,7 +6,7 @@
     <%@page import="in.berbin.model.*"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>To add amount</title>
@@ -91,7 +91,7 @@ th {
            
            
                 <tr>
-                    <th>
+                    <th id="amount">
                         <label for="addwallet">Enter Money to Add:</label>
                         <td>
                         <input type="number" min="0" id="addwallet" name="ammounttoaddinwallet" placeholder="Enter money to add" required><br><br>
@@ -102,7 +102,7 @@ th {
       
                 <br>
                <tr>
-               <th> <button class="buttonsignup" id="subsignup" type="submit" >Click to add</button></th>
+               <th id="sub"> <button class="buttonsignup" id="subsignup" type="submit" >Click to add</button></th>
                 <a href="UserHomePageController"><button type="submit" id="ressignup"class="buttonsignup">Back to Home</button></a>
               
             </tr>

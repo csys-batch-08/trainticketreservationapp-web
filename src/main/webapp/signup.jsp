@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
           <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>SignUp</title>
@@ -78,20 +78,20 @@ input{
         
         <tr>
        
-           <th><label for="fullname">FullName:</label></th>
+           <th id="fullname"><label for="fullname">FullName:</label></th>
             <td>
             <input type="text" name="fullname" id="fullname" placeholder="Enter your FullName" pattern="[A-Za-z]{3,40}"  required><br><br>
             </td>
         </tr>
         <tr>
-            <th><label for="regage">DOB:</label></th>
+            <th id="dob"><label for="regage">DOB:</label></th>
             <td>           
             <input type="date" name="dob"   id="dob" required ><br><br>
             </td>
         </tr>
         <tr>
             
-                <th><label  for="regemail">Email:</label></th>
+                <th id="email"><label  for="regemail">Email:</label></th>
                 <td>
                 <input type="email" name="email" id="regemail" pattern="[a-z][a-z0-9_.]+@[a-z0-9.]+[.][a-z]+" placeholder="Enter your MailID" required><br><br>
            </td>  
@@ -99,7 +99,7 @@ input{
        
             <tr>
                
-                     <th><label for="regpswd">Password:</label> </th>
+                     <th id="password"><label for="regpswd">Password:</label> </th>
                      <td>
                     <input type="password" name="password" id="regpswd" placeholder="Enter your Password" pattern="[a-zA-Z0-9@#]{8,16}" required><br><br>
                     </td>
@@ -108,14 +108,14 @@ input{
             
             <tr>
                
-                    <th> <label for="regmobilenum">MobileNo:</label></th>
+                    <th id="mobile"> <label for="regmobilenum">MobileNo:</label></th>
                     <td>
                     <input type="tel" name="mobileno" id="regmobilenum" pattern="[6-9]{1}[0-9]{9}" maxlength="10" placeholder="Enter your MobileNumber" required><br><br>
                 </td>
             </tr>
             <tr>
               
-                      <th><label for="reggender">Gender:</label></th>
+                      <th id="gender"><label for="reggender">Gender:</label></th>
                       <td>
                     <input  type="radio"name="gender" id="reggender" value="Male" required><label  for="">Male</label>
                     <input  type="radio" name="gender"id="reggender" value="Female" required><label  for="">Female</label>
@@ -123,8 +123,8 @@ input{
             </tr>
             
             <tr>
-           <th> <button class="buttonsignup" id="subsignup" type="submit">Submit</button></th>
-           <th> <button class="buttonsignup"id="ressignup" type="reset">Reset</button></th>
+           <th id="sub"> <button class="buttonsignup" id="subsignup" type="submit">Submit</button></th>
+           <th id="sign"> <button class="buttonsignup"id="ressignup" type="reset">Reset</button></th>
         </tr>
     </table>
     

@@ -10,7 +10,7 @@
          
             
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -57,15 +57,15 @@
  
 
 <tr>
-<th>No</th>
-<th>UserID</th>
- <th >Train ID</th>
-<th>PNR NUMBER</th>
-<th>Booking Date</th>
-<th>Journey Date</th>
-<th>Ticket count</th>
-<th>Ticket Price</th>
-<th>Ticket Status</th>
+<th id="no">No</th>
+<th id="userid">UserID</th>
+ <th id="trid" >Train ID</th>
+<th id="pnr">PNR NUMBER</th>
+<th id="booking">Booking Date</th>
+<th id="journey">Journey Date</th>
+<th id="ticket">Ticket count</th>
+<th id="ticketprice">Ticket Price</th>
+<th id="ticketstatus">Ticket Status</th>
 
 </tr>
 </thead>
