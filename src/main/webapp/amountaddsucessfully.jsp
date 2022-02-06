@@ -7,7 +7,7 @@
         <%@page import="javax.servlet.http.HttpSession" %>
   
              <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Amount Add sucessfully</title>
@@ -83,7 +83,7 @@ h6{
         <table id="logintable">
             <h6>Please Confirm to add money in wallet</h6><br>
                <tr>
-               <th> <button class="buttonsignup" id="subsignup" type="submit" >Proceed to add</button></th>
+               <th id="buttonsignup"> <button class="buttonsignup" id="subsignup" type="submit" >Proceed to add</button></th>
 
             </tr>
         </table>

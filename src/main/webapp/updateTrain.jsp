@@ -3,7 +3,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Update train</title>
@@ -116,7 +116,7 @@ input {
 				</c:if>
 				<c:remove var="lowbalance" scope="session" />
 				<tr>
-					<th><label for="trainname">Train Name:</label>
+					<th id="trainname"><label for="trainname">Train Name:</label>
 					<td><input type="text" name="trainname" id="trainname"
 						Pattern="[Aa-Zz ( )]" value="${param.TrainName}" required><br>
 						<br>

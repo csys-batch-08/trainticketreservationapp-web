@@ -23,14 +23,12 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
 <dependency>
     <groupId>javax.el</groupId>
     <artifactId>javax.el-api</artifactId>
     <version>3.0.0</version>
 </dependency>
   
-  <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>jstl</artifactId>
@@ -59,7 +57,6 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.2</version>
 				<configuration>
-					<!--<webappDirectory>/sample/servlet/container/deploy/directory</webappDirectory>-->
 				</configuration>
 			</plugin>
 			<plugin>

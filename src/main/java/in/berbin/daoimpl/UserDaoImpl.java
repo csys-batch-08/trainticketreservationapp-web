@@ -25,8 +25,8 @@ public class UserDaoImpl implements UserDAO {
 			pstatement.setLong(1, UserMobileNumber);
 			ResultSet rs = pstatement.executeQuery();
 			rs.next();
-			userModel = new Users(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getLong(5),
-					rs.getString(6), rs.getString(7), rs.getInt(8));
+			userModel = new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
+					rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 			con.close();
 			pstatement.close();
 			return userModel;
@@ -129,7 +129,8 @@ public class UserDaoImpl implements UserDAO {
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
-				Users userModel =new Users(rs.getInt(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getString(4),rs.getLong(5),rs.getString(6),rs.getString(7),rs.getInt(8));
+				Users userModel = new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
+						rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 				userList.add(userModel);
 			}
 		} catch (SQLException e) {
@@ -149,7 +150,8 @@ public class UserDaoImpl implements UserDAO {
 				stmt = con.createStatement();
 				ResultSet rs=stmt.executeQuery(findUserDetailsQuery);
 				if(rs.next()) {
-					userModel=new Users(rs.getInt(1),rs.getString(2),rs.getDate(3).toLocalDate(),rs.getString(4),rs.getLong(5),rs.getString(6),rs.getString(7),rs.getInt(8));
+					userModel= new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
+							rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 				}
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -196,8 +198,8 @@ public class UserDaoImpl implements UserDAO {
 			ResultSet rs = pstatement.executeQuery();
 
 			if (rs.next()) {
-				userModel = new Users(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getLong(5),
-						rs.getString(6), rs.getString(7), rs.getInt(8));
+				userModel =  new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
+						rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 			}
 			con.close();
 			pstatement.close();
@@ -249,8 +251,8 @@ public class UserDaoImpl implements UserDAO {
 			ResultSet rs = pstatement.executeQuery();
 
 			if (rs.next()) {
-				userModel = new Users(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(), rs.getString(4), rs.getLong(5),
-						rs.getString(6), rs.getString(7), rs.getInt(8));
+				userModel =  new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
+						rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 				checkUserFlag = true;
 			} else {
 				checkUserFlag = false;

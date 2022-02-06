@@ -8,7 +8,7 @@
          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Manage Wallet</title>
@@ -92,7 +92,7 @@ color: white;
             
           
             <tr>
-                <th><label for="UserName">UserName:</label>
+                <th id="username"><label for="UserName">UserName:</label>
                 <td>
                  <input type="text" name="username" value="${userModel.getUserName()}" disabled="disabled" id="username"  required><br><br></th>
                  </td>
