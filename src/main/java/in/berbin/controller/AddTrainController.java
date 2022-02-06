@@ -32,7 +32,6 @@ public class AddTrainController extends HttpServlet {
 		try {
 			res.sendRedirect("adminHome.jsp");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}else {
