@@ -39,6 +39,7 @@ public class TrainDaoImpl {
 
 			 ps.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
@@ -47,13 +48,11 @@ public class TrainDaoImpl {
 	}
 
 	public void updatetrain(Trains trainmodule) {
-		String updatetrainquery = "update trains set  train_name=?, train_class=?, train_source=?, train_destination=?,train_departure_time=?,train_arraival_time=?, total_seat=?,ticket_price=? where train_number='"
-				+ trainmodule.getTrainNumber() + "'";
-		Connection con=null;
-		PreparedStatement ps=null;
+		String updatetrainquery = "update trains set  train_name=?, train_class=?, train_source=?, train_destination=?,train_departure_time=?,train_arraival_time=?, total_seat=?,ticket_price=? where train_number=?";
 		try {
-			con = ConnectionUtil.getDBconnect();
-			ps = con.prepareStatement(updatetrainquery);
+			Connection con = ConnectionUtil.getDBconnect();
+
+			PreparedStatement ps = con.prepareStatement(updatetrainquery);
 			ps.setString(1, trainmodule.getTrainName());
 			ps.setString(2, trainmodule.getTrainClass());
 			ps.setString(3, trainmodule.getTrainSource());
@@ -64,26 +63,39 @@ public class TrainDaoImpl {
 			ps.setTimestamp(6, arrivalDateTime);
 			ps.setInt(7, trainmodule.getTotalseat());
 			ps.setInt(8, trainmodule.getTicketPrice());
+			ps.setLong(9, trainmodule.getTrainNumber());
 		    ps.executeUpdate();
 			ps.close();
 			con.close();
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
-			CloseConnection.close(ps, con);
 		}
 		
 	}
 
+	public void deletetrain(Trains trainmodule) {
+		String deletetrainquery = "delete from trains where train_number=?";
+		try {
+			Connection con = ConnectionUtil.getDBconnect();
+			PreparedStatement ps = con.prepareStatement(deletetrainquery);
+			ps.setInt(1, trainmodule.getTrainNumber());
+			ps.executeUpdate();
+			ps.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// to show all trains
 	public List<Trains> showAllTrains() {
 		List<Trains> trainList = new ArrayList<Trains>();
-		String listquery = "select train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains";
+		String listquery = "select train_id,train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains";
 		Connection con = null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
+		PreparedStatement ps;
 		try {
 			con = ConnectionUtil.getDBconnect();
 		} catch (ClassNotFoundException e) {
@@ -93,7 +105,7 @@ public class TrainDaoImpl {
 		}
 		try {
 			ps = con.prepareStatement(listquery);
-		 rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Trains trainModel = new Trains(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),
 						rs.getString(5), rs.getString(6), rs.getTimestamp(7).toLocalDateTime(),

@@ -192,7 +192,7 @@ left: 30px;
         </table>
     
     	</form>
-    	  <a href="AdminHome.jsp"><button type="submit" id="addtrres" class="buttonadd"id="addtrres" >Back to HomePage</button></a>
+    	  <a href="adminHome.jsp"><button type="submit" id="addtrres" class="buttonadd"id="addtrres" >Back to HomePage</button></a>
     	   
 </body>
 </html>
