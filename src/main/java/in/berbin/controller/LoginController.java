@@ -64,7 +64,7 @@ public class LoginController extends HttpServlet {
 				try {
 					res.sendRedirect("index.jsp");
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
 
@@ -77,7 +77,7 @@ public class LoginController extends HttpServlet {
 					RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 					rd.forward(req, res);
 				} catch (IOException | ServletException e1) {
-					e1.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
 
@@ -118,7 +118,7 @@ public class LoginController extends HttpServlet {
 					}
 					res.sendRedirect("index.jsp");
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
 

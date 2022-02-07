@@ -33,7 +33,7 @@ public class BookingHistoryController extends HttpServlet {
    RequestDispatcher req = request.getRequestDispatcher("bookingHistory.jsp");
 			req.forward(request, response);
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}

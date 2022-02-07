@@ -25,7 +25,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
 			RequestDispatcher rd = req.getRequestDispatcher("manageWallet.jsp");
 			rd.forward(req, resp);
 	} catch (ServletException | IOException e) {
-		e.printStackTrace();
+		System.out.println(e.getMessage());
 	}
 }
 }

@@ -47,7 +47,7 @@ public class TicketCancellingController extends HttpServlet {
 			session.setAttribute("userHome", "cancelationsucess");
 			res.sendRedirect("UserHomePageController");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

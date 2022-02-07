@@ -17,7 +17,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
 		session.invalidate();
 		resp.sendRedirect("index.jsp");
 	} catch (IOException e) {
-		e.printStackTrace();
+		System.out.println(e.getMessage());
 	}
 }
 }

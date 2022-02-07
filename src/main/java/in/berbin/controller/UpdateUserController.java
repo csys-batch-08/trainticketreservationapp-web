@@ -27,7 +27,7 @@ public class UpdateUserController extends HttpServlet {
 			try {
 				res.sendRedirect("index.jsp");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 	}

@@ -99,7 +99,7 @@ public class UserDaoImpl implements UserDAO {
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
     	 finally {
     		 ConnectionUtil.close(ps, con);
@@ -141,7 +141,7 @@ public class UserDaoImpl implements UserDAO {
 				userList.add(userModel);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
     	finally {
     		ConnectionUtil.close(ps, con ,rs);

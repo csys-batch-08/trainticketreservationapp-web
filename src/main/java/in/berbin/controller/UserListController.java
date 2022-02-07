@@ -27,7 +27,7 @@ public class UserListController extends HttpServlet {
 			rd.forward(request, response);
 		} catch (ServletException | IOException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 

@@ -34,7 +34,7 @@ public class FilterTrainController extends HttpServlet {
 					rd.forward(request, response);
                		
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 
 	}

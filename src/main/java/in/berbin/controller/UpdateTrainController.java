@@ -32,7 +32,7 @@ public class UpdateTrainController extends HttpServlet {
 			try {
 				res.sendRedirect("adminHome.jsp");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}else
 		{
@@ -42,7 +42,7 @@ public class UpdateTrainController extends HttpServlet {
 				res.sendRedirect("updateTrain.jsp");
 				
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		

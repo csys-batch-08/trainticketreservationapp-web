@@ -32,14 +32,14 @@ public class AddTrainController extends HttpServlet {
 		try {
 			res.sendRedirect("adminHome.jsp");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}else {
 		try {
 			res.getWriter().print("Train is not added!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	}

@@ -33,7 +33,7 @@ public class SelectTrainController extends HttpServlet {
 			     RequestDispatcher rd=request.getRequestDispatcher("ticketBooking.jsp");
 			        rd.forward(request, response);
 		} catch (NumberFormatException | ServletException | IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		     
 	}
