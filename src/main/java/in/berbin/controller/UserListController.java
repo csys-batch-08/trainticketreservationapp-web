@@ -17,14 +17,18 @@ import in.berbin.model.Users;
 @WebServlet("/UserListController")
 public class UserListController extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		UserDaoImpl userDao = new UserDaoImpl();
-		List<Users> userList = new ArrayList<Users>();
-		userList = userDao.showAllUsers();
-		request.setAttribute("AllUser", userList);
-		RequestDispatcher rd = request.getRequestDispatcher("userList.jsp");
-		rd.forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			UserDaoImpl userDao = new UserDaoImpl();
+			List<Users> userList = new ArrayList<Users>();
+			userList = userDao.showAllUsers();
+			request.setAttribute("AllUser", userList);
+			RequestDispatcher rd = request.getRequestDispatcher("userList.jsp");
+			rd.forward(request, response);
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -15,13 +15,17 @@ import in.berbin.model.Users;
 @WebServlet("/ManageWalletController")
 public class ManageWalletController extends HttpServlet {
 @Override
-protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	  HttpSession session2=req.getSession();
-      Users userData=(Users)session2.getAttribute("userdata");
-      UserDaoImpl userDao=new UserDaoImpl();
-        Users userModel=userDao.getUserDetailsById(userData.getUserId());
-        req.setAttribute("userModel", userModel);       
-		RequestDispatcher rd = req.getRequestDispatcher("manageWallet.jsp");
-		rd.forward(req, resp);
+protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
+	  try {
+		HttpSession session2=req.getSession();
+		  Users userData=(Users)session2.getAttribute("userdata");
+		  UserDaoImpl userDao=new UserDaoImpl();
+		    Users userModel=userDao.getUserDetailsById(userData.getUserId());
+		    req.setAttribute("userModel", userModel);       
+			RequestDispatcher rd = req.getRequestDispatcher("manageWallet.jsp");
+			rd.forward(req, resp);
+	} catch (ServletException | IOException e) {
+		e.printStackTrace();
+	}
 }
 }

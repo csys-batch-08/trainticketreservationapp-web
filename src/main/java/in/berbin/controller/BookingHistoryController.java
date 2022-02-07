@@ -19,7 +19,7 @@ import in.berbin.model.Users;
 public class BookingHistoryController extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
 	 
 	     try {
 			HttpSession session=request.getSession();
@@ -30,7 +30,6 @@ public class BookingHistoryController extends HttpServlet {
   	BookingDetails book = bookingDetailsModel.get(i);   	  
   	}
    session.setAttribute("currentttt", bookingDetailsModel);
-   //response.sendRedirect("bookingHistory.jsp");
    RequestDispatcher req = request.getRequestDispatcher("bookingHistory.jsp");
 			req.forward(request, response);
 		} catch (ServletException | IOException e) {

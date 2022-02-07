@@ -19,18 +19,22 @@ import in.berbin.model.Users;
 public class SelectTrainController extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		   TrainDaoImpl trainDao=new TrainDaoImpl();
-		    UserDaoImpl userDao=new UserDaoImpl();
-		    HttpSession session=request.getSession();
-		     Users userData=(Users)session.getAttribute("userdata");
-		     //to get train details
-		     int trainid=Integer.parseInt(request.getParameter("traindetails"));		    		  
-		     Trains trainModel=trainDao.findTrainsDetailsUsingID(trainid);
-		     Users userModel=userDao.getUserDetailsById(userData.getUserId());
-		     session.setAttribute("presenttrain", trainModel);		 
-		     RequestDispatcher rd=request.getRequestDispatcher("ticketBooking.jsp");
-		        rd.forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
+		   try {
+			TrainDaoImpl trainDao=new TrainDaoImpl();
+			    UserDaoImpl userDao=new UserDaoImpl();
+			    HttpSession session=request.getSession();
+			     Users userData=(Users)session.getAttribute("userdata");
+			     //to get train details
+			     int trainid=Integer.parseInt(request.getParameter("traindetails"));		    		  
+			     Trains trainModel=trainDao.findTrainsDetailsUsingID(trainid);
+			     Users userModel=userDao.getUserDetailsById(userData.getUserId());
+			     session.setAttribute("presenttrain", trainModel);		 
+			     RequestDispatcher rd=request.getRequestDispatcher("ticketBooking.jsp");
+			        rd.forward(request, response);
+		} catch (NumberFormatException | ServletException | IOException e) {
+			e.printStackTrace();
+		}
 		     
 	}
 

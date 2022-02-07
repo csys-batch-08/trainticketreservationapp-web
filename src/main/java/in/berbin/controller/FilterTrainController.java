@@ -1,12 +1,10 @@
 package in.berbin.controller;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +18,7 @@ import in.berbin.model.Trains;
 public class FilterTrainController extends HttpServlet {
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 			    String source=request.getParameter("sourcelocation");
 			      String destination=request.getParameter("destinationlocation");

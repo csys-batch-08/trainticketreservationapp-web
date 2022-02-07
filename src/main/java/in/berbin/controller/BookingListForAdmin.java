@@ -19,14 +19,18 @@ import in.berbin.model.BookingDetails;
 public class BookingListForAdmin extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  BookingDetailsDaoImpl bookingDao=new BookingDetailsDaoImpl();
-		  List<BookingDetails> allBookings=new ArrayList<BookingDetails>();
-		  allBookings=bookingDao.showAllBookings();
-		  HttpSession session=request.getSession();
-		  session. setAttribute("AllReservation",allBookings);		 		 
-	        RequestDispatcher rd=request.getRequestDispatcher("reservationlist.jsp");
-	        rd.forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		  try {
+			BookingDetailsDaoImpl bookingDao=new BookingDetailsDaoImpl();
+			  List<BookingDetails> allBookings=new ArrayList<BookingDetails>();
+			  allBookings=bookingDao.showAllBookings();
+			  HttpSession session=request.getSession();
+			  session. setAttribute("AllReservation",allBookings);		 		 
+			    RequestDispatcher rd=request.getRequestDispatcher("reservationlist.jsp");
+			    rd.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
