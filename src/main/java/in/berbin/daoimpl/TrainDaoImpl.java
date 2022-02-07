@@ -189,19 +189,19 @@ public class TrainDaoImpl {
 	public boolean updateSeatCount(Trains trainModel) {
 
 		String updateSeat = "update trains set total_seat=? where train_id=?";
-		Connection con;
+		Connection con = null;
+		PreparedStatement ps = null;
 		try {
 			con = ConnectionUtil.getDBconnect();
-			PreparedStatement pstatement = con.prepareStatement(updateSeat);
-			pstatement.setInt(1, trainModel.getTotalseat());
-			pstatement.setInt(2, trainModel.getTrainId());
-			pstatement.executeUpdate();
-			con.close();
-			pstatement.close();
-		} catch (ClassNotFoundException e) {
+			 ps = con.prepareStatement(updateSeat);
+			 ps.setInt(1, trainModel.getTotalseat());
+			 ps.setInt(2, trainModel.getTrainId());
+			 ps.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e.getMessage());
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+		} 
+		finally {
+			ConnectionUtil.close(ps, con);
 		}
 		return false;
 	}
@@ -210,13 +210,14 @@ public class TrainDaoImpl {
 	public Trains findTrainsDetailsUsingID(int trainId) {
 		String getTrain = "select train_id,train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains where train_id=?";
 		Connection con = null;
-		PreparedStatement pstatement = null;
+		PreparedStatement ps = null;
 		Trains trainModel = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDBconnect();
-			pstatement = con.prepareStatement(getTrain);
-			pstatement.setInt(1, trainId);
-			ResultSet rs = pstatement.executeQuery();
+			ps = con.prepareStatement(getTrain);
+			ps.setInt(1, trainId);
+		    rs = ps.executeQuery();
 			if (rs.next()) {
 				trainModel = new Trains(rs.getInt("train_id"), rs.getString("train_name"), rs.getString("train_class"),
 						rs.getInt("train_number"), rs.getString("train_source"), rs.getString("train_destination"),
@@ -225,13 +226,13 @@ public class TrainDaoImpl {
 						rs.getInt("ticket_price"));
 			}
 			con.close();
-			pstatement.close();
-		} catch (ClassNotFoundException e) {
+			ps.close();
+		} catch (ClassNotFoundException | SQLException e) {
 			e.getMessage();
 			System.out.println("classnot found");
-		} catch (SQLException e) {
-			e.getMessage();
-			System.out.println("sql exception");
+		} 
+		finally {
+			ConnectionUtil.close(ps, con, rs);
 		}
 		return trainModel;
 	}
