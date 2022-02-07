@@ -13,9 +13,6 @@ import in.berbin.daoimpl.UserDaoImpl;
 import in.berbin.exception.SignUpException;
 import in.berbin.model.Users;
 
-
-
-
 @WebServlet("/signuppage")
 public class SignupController extends HttpServlet {
 

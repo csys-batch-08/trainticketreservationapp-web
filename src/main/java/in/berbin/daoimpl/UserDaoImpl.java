@@ -270,7 +270,6 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public boolean updateWallet(int updatedWallet, long userMobileNumber) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

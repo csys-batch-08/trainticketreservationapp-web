@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "in.berbin.controller.*"%>
     <%@page import="in.berbin.model.Users" %>
@@ -182,10 +180,7 @@ background-size: cover;
 }
 </style>
 </head>
-
-
 <body>
-
     <div id="nav">
         <ul>
           <img id="logo" src="Assests/trainlogo.png">

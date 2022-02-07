@@ -1,7 +1,6 @@
 package in.berbin.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +35,7 @@ public class FilterTrainController extends HttpServlet {
 					RequestDispatcher rd=request.getRequestDispatcher("filtertrain.jsp");
 					rd.forward(request, response);
                		
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				} catch (SQLException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
