@@ -32,7 +32,7 @@ public class BookingDetailsDaoImpl {
 			result = ps.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} finally {
 			ConnectionUtil.close(ps, con);
 		}
@@ -105,7 +105,7 @@ public class BookingDetailsDaoImpl {
 				bookingList.add(bookingDetailsModel);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} finally {
 			ConnectionUtil.close(ps, con, rs);
 		}
@@ -167,7 +167,7 @@ public class BookingDetailsDaoImpl {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} finally {
 			ConnectionUtil.close(ps, con, rs);
 		}

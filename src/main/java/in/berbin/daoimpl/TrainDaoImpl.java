@@ -37,7 +37,7 @@ public class TrainDaoImpl {
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} finally {
 			ConnectionUtil.close(ps, con);
 		}
@@ -63,7 +63,7 @@ public class TrainDaoImpl {
 			ps.close();
 			con.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -89,7 +89,7 @@ public class TrainDaoImpl {
 				trainList.add(trainModel);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			ConnectionUtil.close(ps,con,rs);
@@ -112,7 +112,7 @@ public class TrainDaoImpl {
 				trainId = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			ConnectionUtil.close(ps, con);
@@ -144,7 +144,7 @@ public class TrainDaoImpl {
 		}
 
 		catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			ConnectionUtil.close(ps,con,rs);
