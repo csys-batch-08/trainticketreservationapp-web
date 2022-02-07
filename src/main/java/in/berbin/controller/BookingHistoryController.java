@@ -3,6 +3,7 @@ package in.berbin.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,9 @@ public class BookingHistoryController extends HttpServlet {
    	BookingDetails book = bookingDetailsModel.get(i);   	  
    	}
    session.setAttribute("currentttt", bookingDetailsModel);
-   response.sendRedirect("bookingHistory.jsp");
+   //response.sendRedirect("bookingHistory.jsp");
+   RequestDispatcher req = request.getRequestDispatcher("bookingHistory.jsp");
+		req.forward(request, response);
 
 	}
 
