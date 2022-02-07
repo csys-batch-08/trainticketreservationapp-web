@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import in.berbin.dao.AdminDAO;
 import in.berbin.model.Admins;
@@ -14,15 +12,18 @@ import in.berbin.util.ConnectionUtil;
 public class AdminDaoImpl implements AdminDAO{
 
 	@Override
-	public Admins adminLogin(String AdminEmailId)  {
-	String loginadmin="select * from admins where admin_email='"+AdminEmailId+"'";
+	public Admins adminLogin(String adminEmailId)  {
+	String loginadmin="select admin_id,admin_name,admin_mobilenumber,admin_password,admin_email from admins where admin_email=?";
 
-	Connection con;
+	Connection con=null;
+	PreparedStatement ps=null;
+	ResultSet rs=null;
 	Admins adminmodule=null;
 	try {
 		con =ConnectionUtil.getDBconnect();
-		PreparedStatement pstatement=con.prepareStatement(loginadmin);
-		ResultSet rs=pstatement.executeQuery();
+	    ps=con.prepareStatement(loginadmin);
+	    ps.setString(1, adminEmailId);
+		rs=ps.executeQuery();
 		
 		if(rs.next()) {
 			adminmodule=new Admins(rs.getString(2),rs.getLong(3),rs.getString(4),rs.getString(5));
@@ -36,78 +37,27 @@ public class AdminDaoImpl implements AdminDAO{
 }
 
 @Override
-public boolean checkadmin(String AdminEmailId)  {
+public boolean checkadmin(String adminEmailId)  {
 	 
-	String loginadmin="select * from admins where admin_email='"+AdminEmailId+"'";
-	Connection con;
-	System.out.println(loginadmin);
+	String loginadmin="select admin_id,admin_name,admin_mobilenumber,admin_password,admin_email from admins from admins where admin_email=?";
+	Connection con = null;
+	PreparedStatement ps=null;
+	ResultSet rs=null;
 	boolean checkAdminFlag=false;
 	try {
 		con = ConnectionUtil.getDBconnect();
-		PreparedStatement ps=con.prepareStatement(loginadmin);
-		ResultSet i=ps.executeQuery(loginadmin);
-		
-		if(i.next()) {
+		ps=con.prepareStatement(loginadmin);
+		ps.setString(1, adminEmailId);
+		rs=ps.executeQuery(loginadmin);		
+		if(rs.next()) {
 			checkAdminFlag= true;
-		}
-		
+		}	
 	}  catch (SQLException e) {
 		System.out.println(e.getMessage());
 	}
 	return checkAdminFlag;
 }
 
-
-@Override
-public void updateAdmin (Admins AdminModel) {
-	
-	String adminUpdate="update admins set admin_name=?,admin_MobileNumber=?, admin_password=? where admin_email='"+AdminModel.getAdminEmail()+"'";
-	
-	Connection con;
-	try {
-		con = ConnectionUtil.getDBconnect();
-		PreparedStatement pstatement=con.prepareStatement(adminUpdate);
-		
-		pstatement.setString(1, AdminModel.getAdminName());
-		pstatement.setLong(2, AdminModel.getAdminMobileNumber());
-		pstatement.setString(3, AdminModel.getAdminPassword());
-		
-		pstatement.executeUpdate();
-		System.out.println("for "+AdminModel.getAdminEmail()+ "profile is updated !!");
-		pstatement.close();
-		con.close();
-	}  catch (SQLException e) {
-		System.out.println(e.getMessage());
-	}
-	
-}
-
-
-@Override
-public List<Admins> viewAdmin(){
-	
-	String adminView="select * from admins";
-	
-	Connection con;
-	List<Admins> adminList=new ArrayList<Admins>();
-	try {
-		con = ConnectionUtil.getDBconnect();
-		PreparedStatement pstatement=con.prepareStatement(adminView);
-		
-		ResultSet rs=pstatement.executeQuery();
-		
-		while(rs.next()) {
-			Admins adminModel=new Admins(rs.getString(2),rs.getLong(3),rs.getString(4),rs.getString(5));
-			adminList.add(adminModel);
-		}
-		
-	} catch (SQLException e) {
-		System.out.println(e.getMessage());
-	}
-	
-	return adminList;
-	
-}
 
 
 }
