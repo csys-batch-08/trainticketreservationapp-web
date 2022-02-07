@@ -36,7 +36,7 @@ public class TrainDaoImpl {
 			ps.setInt(9, trainmodule.getTicketPrice());
 
 			ps.executeUpdate();
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionUtil.close(ps, con);
@@ -88,7 +88,7 @@ public class TrainDaoImpl {
 						rs.getInt("ticket_price"));
 				trainList.add(trainModel);
 			}
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
@@ -111,7 +111,7 @@ public class TrainDaoImpl {
 			if (rs.next()) {
 				trainId = rs.getInt(1);
 			}
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
@@ -197,7 +197,7 @@ public class TrainDaoImpl {
 			 ps.setInt(1, trainModel.getTotalseat());
 			 ps.setInt(2, trainModel.getTrainId());
 			 ps.executeUpdate();
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch ( SQLException e) {
 			System.out.println(e.getMessage());
 		} 
 		finally {
@@ -227,7 +227,7 @@ public class TrainDaoImpl {
 			}
 			con.close();
 			ps.close();
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch ( SQLException e) {
 			e.getMessage();
 			System.out.println("classnot found");
 		} 

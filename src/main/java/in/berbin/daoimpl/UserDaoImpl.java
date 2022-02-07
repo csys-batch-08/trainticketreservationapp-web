@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,26 +13,29 @@ import in.berbin.util.ConnectionUtil;
 
 public class UserDaoImpl implements UserDAO {
 	@Override
-	public Users loginUser(long UserMobileNumber ) {
+	public Users loginUser(long userMobileNumber ) {
 
 		String userLogin = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobileNumber=?";
-		Connection con;
+		Connection con = null;
+		PreparedStatement ps = null;
 		Users userModel = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDBconnect();
-			PreparedStatement pstatement = con.prepareStatement(userLogin);
-			pstatement.setLong(1, UserMobileNumber);
-			ResultSet rs = pstatement.executeQuery();
+		    ps = con.prepareStatement(userLogin);
+		    ps.setLong(1, userMobileNumber);
+		    rs = ps.executeQuery();
 			rs.next();
 			userModel = new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
 					rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 			con.close();
-			pstatement.close();
+			ps.close();
 			return userModel;
-		} catch (ClassNotFoundException e) {
+		} catch ( SQLException e) {
 			System.out.println(e.getMessage());
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+		} 
+		finally {
+			ConnectionUtil.close(ps,con,rs);
 		}
 
 		return userModel;
@@ -45,29 +47,31 @@ public class UserDaoImpl implements UserDAO {
 	public boolean signUpUser(Users userModel) {
 
 		String insertUser = "insert into users (user_name,user_dob,user_email,user_mobilenumber,user_gender,user_password) values (?,?,?,?,?,?)";
-		Connection con;
+		Connection con = null;
+		PreparedStatement ps = null;
 		boolean signUpFlag=true;
 		try {
 			con = ConnectionUtil.getDBconnect();
-			PreparedStatement pstatement = con.prepareStatement(insertUser);
+		    ps = con.prepareStatement(insertUser);
 
-			pstatement.setString(1, userModel.getUserName());
-			pstatement.setDate(2, java.sql.Date.valueOf(userModel.getUserDob()));
-			pstatement.setString(3, userModel.getUserEmail());
-			pstatement.setLong(4, userModel.getUserMobileNumber());
-			pstatement.setString(5, userModel.getUserGender());
-			pstatement.setString(6, userModel.getUserPassword());
+		    ps.setString(1, userModel.getUserName());
+		    ps.setDate(2, java.sql.Date.valueOf(userModel.getUserDob()));
+		    ps.setString(3, userModel.getUserEmail());
+		    ps.setLong(4, userModel.getUserMobileNumber());
+		    ps.setString(5, userModel.getUserGender());
+		    ps.setString(6, userModel.getUserPassword());
 
-			int result = pstatement.executeUpdate();
+			int result = ps.executeUpdate();
 			if (result > 0) {
 				return signUpFlag;
 			} else {
 				return signUpFlag=false;
 			}
-		} catch (ClassNotFoundException e) {
+		} catch ( SQLException e) {
 			System.out.println(e.getMessage());
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+		} 
+		finally {
+			ConnectionUtil.close(ps, con);
 		}
 		 return signUpFlag;
 	}
@@ -76,34 +80,42 @@ public class UserDaoImpl implements UserDAO {
 	
 	
     @Override
-	public void update (Users UserModule) throws ClassNotFoundException, SQLException {
+	public void update (Users userModule)  {
     	
-    	String update="update users set user_name=?, user_dob=?, user_mobilenumber=?, user_gender=?, user_password=? where user_email='"+UserModule.getUserEmail()+"'";
-    	
-    	Connection con=ConnectionUtil.getDBconnect();
-		PreparedStatement ps=con.prepareStatement(update);
-		
-		ps.setString(1,UserModule.getUserName());
-		ps.setDate(2,java.sql.Date.valueOf(UserModule.getUserDob()));
-		ps.setLong(3,UserModule.getUserMobileNumber());
-		ps.setString(4,UserModule.getUserGender());
-		ps.setString(5, UserModule.getUserPassword());
-		
-		int result=ps.executeUpdate();
-		ps.close();
-		con.close();
+    	String update="update users set user_name=?, user_dob=?, user_mobilenumber=?, user_gender=?, user_password=? where user_email=?";
+    	Connection con = null;
+    	PreparedStatement ps = null;
+    	 try {
+			con=ConnectionUtil.getDBconnect();
+			 ps=con.prepareStatement(update);
+			
+			ps.setString(1,userModule.getUserName());
+			ps.setDate(2,java.sql.Date.valueOf(userModule.getUserDob()));
+			ps.setLong(3,userModule.getUserMobileNumber());
+			ps.setString(4,userModule.getUserGender());
+			ps.setString(5, userModule.getUserPassword());
+			ps.setString(6, userModule.getUserEmail());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	 finally {
+    		 ConnectionUtil.close(ps, con);
+    	 }
     }
 	
     
     @Override
-	public void delete (Users UserModule) throws ClassNotFoundException, SQLException {
+	public void delete (Users userModule) throws ClassNotFoundException, SQLException {
 		
 		String del="delete from users where user_id=?";
 		
 		Connection con=ConnectionUtil.getDBconnect();
 		PreparedStatement ps=con.prepareStatement(del);
 		
-		ps.setInt(1, UserModule.getUserId());
+		ps.setInt(1, userModule.getUserId());
 		int res=ps.executeUpdate();
 		ps.close();
 		con.close();		
@@ -116,17 +128,12 @@ public class UserDaoImpl implements UserDAO {
     	List<Users> userList = new ArrayList<Users>();
     	String showusersquery="select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users";
     	Connection con = null;
-    	PreparedStatement ps;
+    	PreparedStatement ps=null;
+    	ResultSet rs= null;
     	try {
-			con = ConnectionUtil.getDBconnect();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-    	try {
+    		con = ConnectionUtil.getDBconnect();
 			ps = con.prepareStatement(showusersquery);
-			ResultSet rs=ps.executeQuery();
+			rs=ps.executeQuery();
 			while(rs.next())
 			{
 				Users userModel = new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
@@ -136,48 +143,54 @@ public class UserDaoImpl implements UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+    	finally {
+    		ConnectionUtil.close(ps, con ,rs);
+    	}
     	return userList;
     }
     //find userId 
     @Override
-	public Users findUserDetails(long UserMobileNumber) {
-    	String findUserDetailsQuery="select * from users where user_mobilenumber='" + UserMobileNumber+"'";
+	public Users findUserDetails(long userMobileNumber) {
+    	String findUserDetailsQuery="select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobilenumber=?";
     	Connection con = null;
-    	Statement stmt = null;
+    	PreparedStatement ps=null;
+    	ResultSet rs= null;
     	Users userModel = null;
 			try {
 				con = ConnectionUtil.getDBconnect();
-				stmt = con.createStatement();
-				ResultSet rs=stmt.executeQuery(findUserDetailsQuery);
+				ps = con.prepareStatement(findUserDetailsQuery);
+				ps.setLong(1, userMobileNumber);
+			    rs=ps.executeQuery();
 				if(rs.next()) {
 					userModel= new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
 							rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 				}
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
+			}  catch (SQLException e) {
 				e.printStackTrace();
 			}
-		
+		finally {
+			ConnectionUtil.close(ps, con, rs);
+		}
 		return userModel;
     }
 	public boolean updateWallet(int updatedWallet, int userId) {
 		String wallet = "update users set user_wallet=user_wallet+? where user_id=?";
 
-		Connection con;
-		PreparedStatement pstatement;
+		Connection con=null;
+		PreparedStatement ps=null;
 		int result = 0;
 		try {
 			con =ConnectionUtil.getDBconnect();
-			pstatement = con.prepareStatement(wallet);
+			ps = con.prepareStatement(wallet);
 
-			pstatement.setInt(1, updatedWallet);
-			pstatement.setLong(2, userId);
-			result = pstatement.executeUpdate();
-		} catch (ClassNotFoundException e) {
+			ps.setInt(1, updatedWallet);
+			ps.setLong(2, userId);
+			result = ps.executeUpdate();
+		}  catch (SQLException e) {
 			System.out.println(e.getMessage());
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+		}
+		finally {
+			ConnectionUtil.close(ps, con);
 		}
 		return result > 0;
 
@@ -185,28 +198,25 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public Users getUserDetailsById(int userId) 
 	{ 
-
 		String getUser = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_id=?";
 		Connection con = null;
-		PreparedStatement pstatement = null;
+		PreparedStatement ps = null;
 		Users userModel = null;
-
+		ResultSet rs =null;
 		try {
 			con = ConnectionUtil.getDBconnect();
-			pstatement = con.prepareStatement(getUser);
-			pstatement.setInt(1, userId);
-			ResultSet rs = pstatement.executeQuery();
-
+			ps = con.prepareStatement(getUser);
+			ps.setInt(1, userId);
+			rs = ps.executeQuery();
 			if (rs.next()) {
 				userModel =  new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
 						rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 			}
-			con.close();
-			pstatement.close();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 		     e.getMessage();
+		}
+		finally {
+			ConnectionUtil.close(ps,con,rs);
 		}
 		return userModel;
 
@@ -214,7 +224,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public boolean checkUser(long userMobileNumber ) {
 
-		String userLogin = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobilenumber=" + userMobileNumber;
+		String userLogin = "select * from users where user_mobilenumber=" + userMobileNumber;
 		Connection con;
 		boolean checkUserFlag = true;
 		try {
@@ -227,51 +237,23 @@ public class UserDaoImpl implements UserDAO {
 			} else {
 				checkUserFlag = false;
 			}
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (SQLException e) {
+		}  catch (SQLException e) {
 			System.out.println(e.getMessage());
 			
 		}
 
 		return checkUserFlag;
 	}
-	@Override
-	public boolean checkExistingUserWhileRegister(long userMobileNumber) {
-
-		String checkUser = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobilenumber	=?";
-		Connection con = null;
-		PreparedStatement pstatement = null;
-		Users userModel;
-		boolean checkUserFlag = true;
-		try {
-			con =  ConnectionUtil.getDBconnect();
-			pstatement = con.prepareStatement(checkUser);
-			pstatement.setLong(1, userMobileNumber);
-			ResultSet rs = pstatement.executeQuery();
-
-			if (rs.next()) {
-				userModel =  new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
-						rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
-				checkUserFlag = true;
-			} else {
-				checkUserFlag = false;
-			}
-			con.close();
-			pstatement.close();
-		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return checkUserFlag;
-
-	}
+	
 
 	@Override
 	public boolean updateWallet(int updatedWallet, long userMobileNumber) {
 		return false;
 	}
+
+
+
+
 
 	
 }

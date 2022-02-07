@@ -1,7 +1,6 @@
 package in.berbin.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,7 @@ import in.berbin.model.Users;
 @WebServlet("/updateuser")
 public class UpdateUserController extends HttpServlet {
 	@Override
-	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException {		
+	public void service(HttpServletRequest req,HttpServletResponse res) {		
 		String name=req.getParameter("fullname");
 		String email=req.getParameter("email");
 		long mobile=Long.parseLong(req.getParameter("mobileno"));
@@ -23,19 +22,13 @@ public class UpdateUserController extends HttpServlet {
 		String gender=req.getParameter("gender");
 		Users userModel=new Users(name,dob,email,mobile,gender,password);
 		UserDaoImpl userDao=new UserDaoImpl();		
-		try {
-			userDao.update(userModel);
-			if(userDao!=null) {
+		userDao.update(userModel);
+		if(userDao!=null) {
+			try {
 				res.sendRedirect("index.jsp");
-			}else
-			{
-				res.getWriter().print("Your profile not updated");
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 	

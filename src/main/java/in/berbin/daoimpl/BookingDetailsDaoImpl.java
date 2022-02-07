@@ -31,9 +31,7 @@ public boolean bookTicket(Users userModel,Trains trainModel, BookingDetails book
 		pstmt.setInt(5,bookingDetailsModel.getTotalPrice());
 		result=	pstmt.executeUpdate();
 		
-	} catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	} catch (SQLException e) {
+	}  catch (SQLException e) {
 		e.printStackTrace();
 	}
 	return result>0;
@@ -84,9 +82,7 @@ public List<BookingDetails>getBookingDetailsForPresentUser(Users userModel){
 			BookingDetails bookingDetailsModel=new BookingDetails(userModel,trains,rs.getLong(12),rs.getDate(13).toLocalDate(),rs.getDate(14).toLocalDate(),rs.getInt(15),rs.getInt(16),rs.getString(17));
 			bookingList.add(bookingDetailsModel);			
 		}
-	} catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	} catch (SQLException e) {
+	}  catch (SQLException e) {
 		e.printStackTrace();
 	}
 	return bookingList;
@@ -107,8 +103,6 @@ public int findPnrNumber(Users userModel, BookingDetails bookingDetailsModel) {
 			bookingPnr=rs.getInt(1);
 		}
 		
-	} catch (ClassNotFoundException e) {
-		e.getMessage();
 	} catch (SQLException e) {
 		e.getMessage();
 	}
@@ -140,9 +134,7 @@ public BookingDetails findBookedTicketsDetails(long pnrNumber) {
 			
 		}	
 		return bookingDetailsModel;	
-	} catch (ClassNotFoundException e) {
-		e.getMessage();
-	} catch (SQLException e) {
+	}  catch (SQLException e) {
 		e.getMessage();
 	}
 	
@@ -156,13 +148,7 @@ public List<BookingDetails> showAllBookings()
 	Connection con =null;
 	PreparedStatement ps;
 	Users userModel=null;
-	try {
-		con=ConnectionUtil.getDBconnect();
-	} catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
+	con=ConnectionUtil.getDBconnect();
 	try {
 		ps=con.prepareStatement(allUserBooking);
 		ResultSet rs=ps.executeQuery();

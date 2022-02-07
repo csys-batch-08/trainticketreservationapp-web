@@ -4,18 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import in.berbin.dao.AdminDAO;
 import in.berbin.model.Admins;
-import in.berbin.model.Trains;
-import in.berbin.model.Users;
 import in.berbin.util.ConnectionUtil;
 
 public class AdminDaoImpl implements AdminDAO{
 
+	@Override
 	public Admins adminLogin(String AdminEmailId)  {
 	String loginadmin="select * from admins where admin_email='"+AdminEmailId+"'";
 
@@ -30,8 +28,6 @@ public class AdminDaoImpl implements AdminDAO{
 			adminmodule=new Admins(rs.getString(2),rs.getLong(3),rs.getString(4),rs.getString(5));
 		}
 		
-	} catch (ClassNotFoundException e) {
-		System.out.println(e.getMessage());
 	} catch (SQLException e) {
 		System.out.println(e.getMessage());
 	}
@@ -39,6 +35,7 @@ public class AdminDaoImpl implements AdminDAO{
 	return adminmodule;
 }
 
+@Override
 public boolean checkadmin(String AdminEmailId)  {
 	 
 	String loginadmin="select * from admins where admin_email='"+AdminEmailId+"'";
@@ -54,15 +51,14 @@ public boolean checkadmin(String AdminEmailId)  {
 			checkAdminFlag= true;
 		}
 		
-	} catch (ClassNotFoundException e) {
-		System.out.println(e.getMessage());
-	} catch (SQLException e) {
+	}  catch (SQLException e) {
 		System.out.println(e.getMessage());
 	}
 	return checkAdminFlag;
 }
 
 
+@Override
 public void updateAdmin (Admins AdminModel) {
 	
 	String adminUpdate="update admins set admin_name=?,admin_MobileNumber=?, admin_password=? where admin_email='"+AdminModel.getAdminEmail()+"'";
@@ -80,15 +76,14 @@ public void updateAdmin (Admins AdminModel) {
 		System.out.println("for "+AdminModel.getAdminEmail()+ "profile is updated !!");
 		pstatement.close();
 		con.close();
-	} catch (ClassNotFoundException e) {
-		System.out.println(e.getMessage());
-	} catch (SQLException e) {
+	}  catch (SQLException e) {
 		System.out.println(e.getMessage());
 	}
 	
 }
 
 
+@Override
 public List<Admins> viewAdmin(){
 	
 	String adminView="select * from admins";
@@ -106,8 +101,6 @@ public List<Admins> viewAdmin(){
 			adminList.add(adminModel);
 		}
 		
-	} catch (ClassNotFoundException e) {
-		System.out.println(e.getMessage());
 	} catch (SQLException e) {
 		System.out.println(e.getMessage());
 	}

@@ -7,14 +7,14 @@ import java.util.List;
 import in.berbin.model.Users;
 
 public interface UserDAO {
-	public Users loginUser(long UserMobileNumber );
+	public Users loginUser(long userMobileNumber );
 	
 	
 	public boolean signUpUser(Users userModel);
 	
-	public void update (Users UserModule) throws ClassNotFoundException, SQLException;
+	public void update (Users userModule) throws ClassNotFoundException, SQLException;
 	
-	   public void delete (Users UserModule) throws ClassNotFoundException, SQLException;
+	   public void delete (Users userModule) throws ClassNotFoundException, SQLException;
 	   
 	   public List<Users> showAllUsers();
 	   
@@ -26,7 +26,6 @@ public interface UserDAO {
 		
 		public boolean checkUser(long userMobileNumber );
 		
-		public boolean checkExistingUserWhileRegister(long userMobileNumber);
 		
 }	
 
