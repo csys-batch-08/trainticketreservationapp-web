@@ -169,7 +169,7 @@ public class TrainDaoImpl {
 		Connection con = ConnectionUtil.getDBconnect();
 		PreparedStatement pstatement = con.prepareStatement(findTrain);
 
-		ResultSet rs = pstatement.executeQuery();
+		ResultSet rs = pstatement.executeQuery(findTrain);
 
 		while (rs.next()) {
 			trainModel = new Trains(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),

@@ -74,7 +74,7 @@ public class BookingDetailsDaoImpl {
 				pstwallet.close();
 				pstseat.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		return result > 0;

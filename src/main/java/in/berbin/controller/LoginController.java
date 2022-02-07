@@ -114,7 +114,7 @@ public class LoginController extends HttpServlet {
 					try {
 						rd.forward(req, res);
 					} catch (ServletException e1) {
-						e1.printStackTrace();
+						System.out.println(e.getMessage());
 					}
 					res.sendRedirect("index.jsp");
 				} catch (IOException e1) {

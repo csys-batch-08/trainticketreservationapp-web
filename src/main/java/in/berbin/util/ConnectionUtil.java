@@ -12,19 +12,13 @@ public class ConnectionUtil {
 	{
 		Connection con = null;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			
-			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","SYSTEM","oracle");
-			
-			
+			Class.forName("oracle.jdbc.driver.OracleDriver");			
+			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","SYSTEM","oracle");			
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return con;
 	}
-
-
 
 	public static void close(PreparedStatement pstmt, Connection con) {
 		try {

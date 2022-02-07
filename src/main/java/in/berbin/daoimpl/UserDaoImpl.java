@@ -166,7 +166,7 @@ public class UserDaoImpl implements UserDAO {
 							rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
 				}
 			}  catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		finally {
 			ConnectionUtil.close(ps, con, rs);
