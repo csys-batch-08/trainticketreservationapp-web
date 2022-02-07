@@ -62,7 +62,7 @@ public boolean cancelTicket(Users userModel1,BookingDetails booking,Trains train
 //to show booking history of particular user
 
 public List<BookingDetails>getBookingDetailsForPresentUser(Users userModel){
-	String Query = "select t.TRAIN_ID,  t.TRAIN_NAME,t. TRAIN_CLASS,t.TRAIN_NUMBER, t.TRAIN_SOURCE,t.TRAIN_DESTINATION,t.TRAIN_DEPARTURE_TIME,"
+	String query = "select t.TRAIN_ID,  t.TRAIN_NAME,t. TRAIN_CLASS,t.TRAIN_NUMBER, t.TRAIN_SOURCE,t.TRAIN_DESTINATION,t.TRAIN_DEPARTURE_TIME,"
 			+ "t.TRAIN_ARRAIVAL_TIME, t. TOTAL_SEAT, t.TICKET_PRICE, b.USER_ID,  b.PNR_NUMBER, b.JOURNEY_DATE,b.BOOKING_DATE,"
 			+ "b.TICKET_COUNT, b.TOTAL_PRICE,b.TICKET_STATUS from booking_details b inner join trains t on b.train_id=t.train_id where b.user_id=?";
 	Connection con;
@@ -74,7 +74,7 @@ public List<BookingDetails>getBookingDetailsForPresentUser(Users userModel){
 	
     try {
 		con=ConnectionUtil.getDBconnect();
-		pstmt=con.prepareStatement(Query);
+		pstmt=con.prepareStatement(query);
 		pstmt.setInt(1, userModel.getUserId());
 		rs=pstmt.executeQuery();
 		while(rs.next()) {
