@@ -28,8 +28,6 @@ public class UserDaoImpl implements UserDAO {
 			rs.next();
 			userModel = new Users(rs.getInt("user_id"), rs.getString("user_name"), rs.getDate("user_dob").toLocalDate(), rs.getString("user_email"), rs.getLong("user_mobileNumber"),
 					rs.getString("user_gender"), rs.getString("user_password"), rs.getInt("user_wallet"));
-			con.close();
-			ps.close();
 			return userModel;
 		} catch ( SQLException e) {
 			System.out.println(e.getMessage());
@@ -39,10 +37,7 @@ public class UserDaoImpl implements UserDAO {
 		}
 
 		return userModel;
-	}
-	
-
-	
+	}	
 	@Override
 	public boolean signUpUser(Users userModel) {
 
@@ -53,7 +48,6 @@ public class UserDaoImpl implements UserDAO {
 		try {
 			con = ConnectionUtil.getDBconnect();
 		    ps = con.prepareStatement(insertUser);
-
 		    ps.setString(1, userModel.getUserName());
 		    ps.setDate(2, java.sql.Date.valueOf(userModel.getUserDob()));
 		    ps.setString(3, userModel.getUserEmail());
@@ -74,11 +68,7 @@ public class UserDaoImpl implements UserDAO {
 			ConnectionUtil.close(ps, con);
 		}
 		 return signUpFlag;
-	}
-
-	
-	
-	
+	}	
     @Override
 	public void update (Users userModule)  {
     	
@@ -87,17 +77,14 @@ public class UserDaoImpl implements UserDAO {
     	PreparedStatement ps = null;
     	 try {
 			con=ConnectionUtil.getDBconnect();
-			 ps=con.prepareStatement(update);
-			
+			 ps=con.prepareStatement(update);			
 			ps.setString(1,userModule.getUserName());
 			ps.setDate(2,java.sql.Date.valueOf(userModule.getUserDob()));
 			ps.setLong(3,userModule.getUserMobileNumber());
 			ps.setString(4,userModule.getUserGender());
 			ps.setString(5, userModule.getUserPassword());
-			ps.setString(6, userModule.getUserEmail());
-			
-			ps.executeUpdate();
-			
+			ps.setString(6, userModule.getUserEmail());			
+			ps.executeUpdate();			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -107,20 +94,7 @@ public class UserDaoImpl implements UserDAO {
     }
 	
     
-    @Override
-	public void delete (Users userModule) throws ClassNotFoundException, SQLException {
-		
-		String del="delete from users where user_id=?";
-		
-		Connection con=ConnectionUtil.getDBconnect();
-		PreparedStatement ps=con.prepareStatement(del);
-		
-		ps.setInt(1, userModule.getUserId());
-		int res=ps.executeUpdate();
-		ps.close();
-		con.close();		
-	}
-    
+
 
     @Override
 	public List<Users> showAllUsers()
@@ -224,38 +198,33 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public boolean checkUser(long userMobileNumber ) {
 
-		String userLogin = "select * from users where user_mobilenumber=" + userMobileNumber;
-		Connection con;
-		boolean checkUserFlag = true;
+		String userLogin = "select user_id,user_name,user_dob,user_email,user_mobileNumber,user_gender,user_password,user_wallet from users where user_mobilenumber=?";
+		Connection con=null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		boolean checkUserFlag = false;
 		try {
 			con = ConnectionUtil.getDBconnect();
-			PreparedStatement pstatement = con.prepareStatement(userLogin);
-
-			int i = pstatement.executeUpdate(userLogin);
-			if (i > 0) {
+			ps = con.prepareStatement(userLogin);
+			ps.setLong(1, userMobileNumber);
+		    rs = ps.executeQuery();
+			if (rs.next()) {
 				checkUserFlag = true;
-			} else {
-				checkUserFlag = false;
-			}
+			} 
 		}  catch (SQLException e) {
 			System.out.println(e.getMessage());
 			
 		}
+		finally {
+			ConnectionUtil.close(ps, con, rs);
+		}
 
 		return checkUserFlag;
 	}
-	
-
 	@Override
 	public boolean updateWallet(int updatedWallet, long userMobileNumber) {
 		return false;
-	}
-
-
-
-
-
-	
+	}	
 }
 
 

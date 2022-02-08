@@ -13,8 +13,6 @@ public interface UserDAO {
 	public boolean signUpUser(Users userModel);
 	
 	public void update (Users userModule) throws ClassNotFoundException, SQLException;
-	
-	   public void delete (Users userModule) throws ClassNotFoundException, SQLException;
 	   
 	   public List<Users> showAllUsers();
 	   

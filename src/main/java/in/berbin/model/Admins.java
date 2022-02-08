@@ -1,8 +1,11 @@
 package in.berbin.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Admins {
+public class Admins implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private int adminId;
 	private String adminName;
 	private long adminMobileNumber;

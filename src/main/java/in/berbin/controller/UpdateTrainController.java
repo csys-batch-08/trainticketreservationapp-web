@@ -27,8 +27,8 @@ public class UpdateTrainController extends HttpServlet {
 		int ticketprice=Integer.parseInt(req.getParameter("ticketprice"));
 		Trains trainModel=new Trains(trainname,trainclass,trainnumber,trainsource,traindestination,traindeparture,trainarraival,totalseat,ticketprice);
 		TrainDaoImpl TrainDao=new TrainDaoImpl();
-		TrainDao.updatetrain(trainModel);
-		if(TrainDao!=null) {
+		boolean result=TrainDao.updatetrain(trainModel);
+		if(result) {
 			try {
 				res.sendRedirect("adminHome.jsp");
 			} catch (IOException e) {

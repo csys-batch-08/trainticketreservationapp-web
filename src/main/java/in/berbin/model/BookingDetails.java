@@ -1,11 +1,12 @@
 package in.berbin.model;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
-public class BookingDetails {
+public class BookingDetails implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 private Users usermodel;
 private Trains trainModel;
 private int trainid;
@@ -256,11 +257,7 @@ public String toString() {
 
 
 
-@Override
-public int hashCode() {
-	return Objects.hash(bookingDate, journeyDate, pnrNumber, ticketCount, ticketStatus, totalPrice, trainid,
-			usermodel);
-}
+
 
 
 

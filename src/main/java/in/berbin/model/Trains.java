@@ -1,13 +1,17 @@
 package in.berbin.model;
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
-public class Trains {
-	
+public class Trains implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+
 public Trains(int trainId, String trainName, String trainClass, int trainNumber, String trainSource,
 			String trainDestination, LocalDateTime trainDepartureTime, LocalDateTime trainArraivalTime, int totalseat,
 			int ticketPrice) {

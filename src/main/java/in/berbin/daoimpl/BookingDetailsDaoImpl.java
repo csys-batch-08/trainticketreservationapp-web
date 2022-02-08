@@ -65,17 +65,22 @@ public class BookingDetailsDaoImpl {
 			result = pstatement.executeUpdate();
 			result = pstwallet.executeUpdate();
 			result = pstseat.executeUpdate();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			try {
-				con.close();
-				pstatement.close();
-				pstwallet.close();
-				pstseat.close();
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
+		} catch (SQLException |NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  finally {
+			
+				try {
+					con.close();
+					pstatement.close();
+					pstwallet.close();
+					pstseat.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			
 		}
 		return result > 0;
 	}
