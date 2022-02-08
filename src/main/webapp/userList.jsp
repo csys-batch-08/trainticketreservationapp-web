@@ -53,7 +53,7 @@
           
            
            <table border="2" id="allusers" class="table table-striped table-hover">
-<h1><b>Users List</b></h1>
+ <h1><strong>Users List</strong></h1>
 <thead>
 <tr>
 <th id="no">No</th>

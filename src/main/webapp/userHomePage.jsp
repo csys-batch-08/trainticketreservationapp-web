@@ -190,7 +190,7 @@ table, tr, td {
 <body>
 	<div id="nav">
 		<ul>
-			<img id="logo" src="Assests/trainlogo.png">
+			<img id="logo" src="Assests/trainlogo.png" alt="couldn't load">
 			<li><a href="aboutUs.jsp">About us</a></li>
 			<li><a
 				href="updateUser.jsp?Username=${userData.getUserName()}&Userdob=${userData.getUserDob()}&Usermailid=${userData.getUserEmail()}

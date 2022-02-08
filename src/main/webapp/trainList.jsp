@@ -9,7 +9,7 @@
 
 
 <!DOCTYPE html>
-<html- lang="en">
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <link
@@ -25,6 +25,10 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+#list{
+margin-left: 40%;
 }
 
 #trainlist {
@@ -67,7 +71,7 @@ a {
 	<table border="2" id="alltrains"
 		class="table table-striped table-hover">
 		<h1>
-			<b>Train List</b>
+			<strong id="list">Train List</strong>
 		</h1>
 		<thead>
 			<tr>

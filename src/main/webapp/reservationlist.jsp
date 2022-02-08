@@ -38,6 +38,9 @@
         a{
             text-decoration: none;
         }
+        #booking{
+        margin-left: 40%;
+        }
     </style>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
@@ -58,7 +61,7 @@
         </ul>
         
    <table border="2" id="alltrains" class="table table-striped table-hover">
-<h1><b><centre>Booking List</centre></b></h1>
+<h1 id="booking"><strong>Booking List</strong></h1>
 <thead>
  <c:if test="${not empty AllReservation}">
  

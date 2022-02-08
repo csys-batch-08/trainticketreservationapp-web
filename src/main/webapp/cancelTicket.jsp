@@ -11,22 +11,33 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+	<style>
+	#text{
+	margin-left: 25%;
+	}
+	#button{
+	margin-left: 45%;
+	}
+	#homeButton{
+	margin-left: 42%;
+	}
+	</style>
 </head>
 <body>
 	<div class="container-fluid">
 		<form action="TicketCancelling">
 			<input type="hidden" name="cancelpnr" id=""value="${param.pnrnumber}">			
-			<center>
+			
 				<br> <br> <br> <br>
-				<h4>To Confirm Cancellation Press OK(10% of totalprice will be
+				<h4 id="text">To Confirm Cancellation Press OK(10% of totalPrice will be
 					deduced)</h4>
 				<br> <br>
-				<button class="btn btn-danger btn-block" type="submit">OK</button>
+				<button class="btn btn-danger btn-block" id="button" type="submit">OK</button>
 				<br> <br>
-			</center>
+		</form>	
 	</div>
-	</form>
-	<button class="btn btn-primary btn-block"
+	
+	<button class="btn btn-primary btn-block" id="homeButton"
 		<a href="UserHomePageController"></a>>Back to Home<</button>
 </body>
 <script

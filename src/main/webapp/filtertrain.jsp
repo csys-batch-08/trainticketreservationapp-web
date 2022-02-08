@@ -88,6 +88,10 @@ th {
 	border-radius: 5px;
 }
 
+#homebutton {
+	margin-left: 50%;
+}
+
 a {
 	text-decoration: none;
 }
@@ -112,6 +116,10 @@ a {
 				</div>
 				<div id="outerlinetable">
 					<table>
+						<caption></caption>
+					<th>
+				
+					
 						<table border="2" id="alltrains">
 							<h1>
 								<strong>Train List</strong>
@@ -144,11 +152,9 @@ a {
 								<c:set var="i" value="0" />
 								<c:forEach items="${FilteredTrain}" var="filterTrainList">
 									<c:set var="i" value="${i+1}" />
-									<fmt:parseDate
-										value="${filterTrainList.trainDepartureTime}"
+									<fmt:parseDate value="${filterTrainList.trainDepartureTime}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="departureTime" type="both" />
-                                      <fmt:parseDate
-										value="${filterTrainList.trainArraivalTime}"
+									<fmt:parseDate value="${filterTrainList.trainArraivalTime}"
 										pattern="yyyy-MM-dd'T'HH:mm" var="arraivalTime" type="both" />
 									<tr>
 										<td>${i}</td>
@@ -163,18 +169,21 @@ a {
 												pattern="dd-MM-yyyy HH:mm" type="both" /></td>
 										<td>${filterTrainList.totalseat}</td>
 										<td>${filterTrainList.ticketPrice}</td>
-										<td><td>
+										<td>
+										<td>
+
 											<button id="trainId" class="btn btn-primary btn-block">
 												<a
 													href="SelectTrainController?traindetails=${filterTrainList.trainId}">Book</a>
 											</button>
-										</td></td>
-										
+										</td>
+										</td>
+
 
 									</tr>
 								</c:forEach>
-						
 						</table>
+						</th>
 					</table>
 				</div>
 			</fieldset>
@@ -182,10 +191,11 @@ a {
 	</form>
 	<br>
 	<br>
-	<center>
-		<a href="UserHomePageController"><button
-				class="btn btn-outline-primary">Back to HomePage</button></a>
-	</center>
+
+	<a href="UserHomePageController"><button
+			class="btn btn-outline-primary" id="homebutton">Back to
+			HomePage</button></a>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

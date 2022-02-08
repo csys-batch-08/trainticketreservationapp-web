@@ -106,6 +106,9 @@ marquee {
 	color: #ebebe0;
 	font-family: monospace;
 }
+#errorMsg{
+margin-left: 40%;
+}
 </style>
 </head>
 <body>
@@ -142,9 +145,9 @@ marquee {
 				id="signup" href="signup.jsp">SignUp</a>
 
 			<c:if test="${errors!=null}">
-				<center>
+				
 					<h2 id="errorMsg">${errors}</h2>
-				</center>
+				
 			</c:if>
 			<c:remove var="errors" scope="session" />
 		</form>

@@ -132,6 +132,12 @@ a {
 #trainId:hover {
 	background-color: rgb(113, 99, 177);
 }
+#list{
+margin-left: 40%;
+}
+#backButton{
+margin-left: 43%;
+}
 </style>
 </head>
 <body>
@@ -144,7 +150,7 @@ a {
 					<table>
 
 						<table border="2" id="alltrains">
-							<h1>
+							<h1 id="list">
 								<strong>Booking List</strong>
 							</h1>
 							<thead>
@@ -246,10 +252,8 @@ a {
 			</fieldset>
 		</div>
 	</form>
-	<center>
-		<a href="UserHomePageController"><button class="btn btn-primary">Back
+		<a href="UserHomePageController"><button class="btn btn-primary" id="backButton">Back
 				to HomePage</button></a>
-	</center>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
