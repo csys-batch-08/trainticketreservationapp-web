@@ -163,35 +163,59 @@ public class TrainDaoImpl {
 
 	// to search train
 	// to search train
-	public List<Trains> searchTrain(LocalDate departureDate, String source, String destination){
-		List<Trains> trainsearchList=null;
-		Connection con =null;
-		PreparedStatement ps = null;
-		ResultSet rs =null;
-		try {
-			LocalDate ld = LocalDate();
-			String findTrain = "select train_id,train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains where to_char(train_departure_time,'yyyy-mm-dd')=? and train_source=? and train_destination=?";
-			Trains trainModel;
-			trainsearchList = new ArrayList<>();
-			con = ConnectionUtil.getDBconnect();
-			ps = con.prepareStatement(findTrain);
-			ps.setDate(1, java.sql.Date.valueOf(departureDate));
-			ps.setString(2, source);
-			ps.setString(3, destination);
-			rs = ps.executeQuery();
+//	public List<Trains> searchTrain(LocalDate DepartureDate, String source, String destination)
+//			throws ClassNotFoundException, SQLException {
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//
+//		LocalDate ld = LocalDate();
+//
+//		String findTrain = "select*from trains where to_char(train_departure_time,'yyyy-mm-dd')=? and train_source=? and train_destination=?";
+//
+//		Trains trainModel;
+//		List<Trains> trainsearchList = new ArrayList<Trains>();
+//
+//		Connection con = ConnectionUtil.getDBconnect();
+//		PreparedStatement pstatement = con.prepareStatement(findTrain);
+//		pstatement.setDate(1, java.sql.Date.valueOf(DepartureDate));
+//		pstatement.setString(2, source);
+//		pstatement.setString(3, destination);
+//		ResultSet rs = pstatement.executeQuery();
+//
+//		while (rs.next()) {
+//			trainModel = new Trains(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
+//					rs.getString(6), rs.getTimestamp(7).toLocalDateTime(), rs.getTimestamp(8).toLocalDateTime(),
+//					rs.getInt(9), rs.getInt(10));
+//			trainsearchList.add(trainModel);
+//
+//		}
+//		return trainsearchList;
+//
+//	}
 
-			while (rs.next()) {
-				trainModel = new Trains(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
-						rs.getString(6), rs.getTimestamp(7).toLocalDateTime(), rs.getTimestamp(8).toLocalDateTime(),
-						rs.getInt(9), rs.getInt(10));
-				trainsearchList.add(trainModel);
+	// to search train
+	public List<Trains> searchTrain(LocalDate DepartureDate, String source, String destination)
+			throws ClassNotFoundException, SQLException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		finally {
-			ConnectionUtil.close(ps, con, rs);
+		LocalDate ld = LocalDate();
+
+		String findTrain = "select*from trains where to_char(train_departure_time,'yyyy-mm-dd')='" + DepartureDate
+				+ "' and train_source='" + source + "' and train_destination='" + destination + "'";
+
+		Trains trainModel;
+		List<Trains> trainsearchList = new ArrayList<Trains>();
+
+		Connection con = ConnectionUtil.getDBconnect();
+		PreparedStatement pstatement = con.prepareStatement(findTrain);
+
+		ResultSet rs = pstatement.executeQuery();
+
+		while (rs.next()) {
+			trainModel = new Trains(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5),
+					rs.getString(6), rs.getTimestamp(7).toLocalDateTime(), rs.getTimestamp(8).toLocalDateTime(),
+					rs.getInt(9), rs.getInt(10));
+			trainsearchList.add(trainModel);
+
 		}
 		return trainsearchList;
 

@@ -177,7 +177,11 @@ a {
 									<c:set var="i" value="${i+1}" />
 									<fmt:parseDate
 										value="${CurrentUser.getTrainModel().getTrainDepartureTime()}"
-										pattern="yyyy-MM-dd'T'HH:mm" var="macthDate" type="both" />
+										pattern="yyyy-MM-dd'T'HH:mm" var="departureDate" type="both" />
+										
+										<fmt:parseDate
+										value="${CurrentUser.journeyDate}"
+										pattern="yyyy-MM-dd" var="journeyDate" type="both" />
 									<tr>
 										<td>${loop.count}</td>
 										<td>${CurrentUser.getTrainModel().getTrainName()}</td>
@@ -186,9 +190,10 @@ a {
 										<td>${CurrentUser.getTrainModel().getTrainSource()}</td>
 										<td>${CurrentUser.getTrainModel().getTrainDestination()}</td>
 										<td>${CurrentUser.pnrNumber}</td>
-										<td>${CurrentUser.journeyDate}</td>
+									<td><fmt:formatDate value="${journeyDate}"
+												pattern="dd-MM-yyyy" type="both" /></td>
 										<td>${CurrentUser.ticketCount}</td>
-										<td><fmt:formatDate value="${macthDate}"
+										<td><fmt:formatDate value="${departureDate}"
 												pattern="dd-MM-yyyy HH:mm" type="both" /></td>
 										<td>${CurrentUser.totalPrice}</td>
 										<td>${CurrentUser.ticketStatus}</td>
