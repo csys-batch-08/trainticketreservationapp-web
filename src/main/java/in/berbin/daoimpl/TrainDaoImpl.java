@@ -169,7 +169,7 @@ public class TrainDaoImpl {
 //
 //		LocalDate ld = LocalDate();
 //
-//		String findTrain = "select*from trains where to_char(train_departure_time,'yyyy-mm-dd')=? and train_source=? and train_destination=?";
+//		String findTrain = "select train_id,train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains where to_char(train_departure_time,'yyyy-mm-dd')=? and train_source=? and train_destination=?";
 //
 //		Trains trainModel;
 //		List<Trains> trainsearchList = new ArrayList<Trains>();
@@ -195,11 +195,10 @@ public class TrainDaoImpl {
 	// to search train
 	public List<Trains> searchTrain(LocalDate DepartureDate, String source, String destination)
 			throws ClassNotFoundException, SQLException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 		LocalDate ld = LocalDate();
 
-		String findTrain = "select*from trains where to_char(train_departure_time,'yyyy-mm-dd')='" + DepartureDate
+		String findTrain = "select train_id,train_name,train_class,train_number,train_source,train_destination,train_departure_time,train_arraival_time,total_seat,ticket_price from trains where to_char(train_departure_time,'yyyy-mm-dd')='" + DepartureDate
 				+ "' and train_source='" + source + "' and train_destination='" + destination + "'";
 
 		Trains trainModel;

@@ -66,28 +66,23 @@ public class BookingDetailsDaoImpl {
 			result = pstwallet.executeUpdate();
 			result = pstseat.executeUpdate();
 		} catch (SQLException |NullPointerException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}  finally {
-			
-				try {
-					con.close();
-					pstatement.close();
-					pstwallet.close();
-					pstseat.close();
-				} catch (SQLException |NullPointerException e) {
-					e.printStackTrace();
-				}
+			ConnectionUtil.close(pstatement, pstwallet, pstseat);
 				
-			
-		}
+				}
+						
 		return result > 0;
 	}
 //to show booking history of particular user
 
 	public List<BookingDetails> getBookingDetailsForPresentUser(Users userModel) {
-		String Query = "select t.TRAIN_ID,  t.TRAIN_NAME,t. TRAIN_CLASS,t.TRAIN_NUMBER, t.TRAIN_SOURCE,t.TRAIN_DESTINATION,t.TRAIN_DEPARTURE_TIME,"
-				+ "t.TRAIN_ARRAIVAL_TIME, t. TOTAL_SEAT, t.TICKET_PRICE, b.USER_ID,  b.PNR_NUMBER, b.JOURNEY_DATE,b.BOOKING_DATE,"
-				+ "b.TICKET_COUNT, b.TOTAL_PRICE,b.TICKET_STATUS from booking_details b inner join trains t on b.train_id=t.train_id where b.user_id=?";
+		String Query = "select t.TRAIN_ID,  t.TRAIN_NAME,t. TRAIN_CLASS,t.TRAIN_NUMBER, t.TRAIN_SOURCE,"
+				+ "t.TRAIN_DESTINATION,t.TRAIN_DEPARTURE_TIME,"
+				+ "t.TRAIN_ARRAIVAL_TIME, t. TOTAL_SEAT, t.TICKET_PRICE, b.USER_ID, "
+				+ " b.PNR_NUMBER, b.JOURNEY_DATE,b.BOOKING_DATE,"
+				+ "b.TICKET_COUNT, b.TOTAL_PRICE,b.TICKET_STATUS"
+				+ " from booking_details b inner join trains t on b.train_id=t.train_id where b.user_id=?";
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

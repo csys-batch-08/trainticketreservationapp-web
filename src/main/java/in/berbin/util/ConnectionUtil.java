@@ -65,4 +65,21 @@ public class ConnectionUtil {
 		}
 	}
 
+	public static void close(PreparedStatement pstatement, PreparedStatement pstwallet, PreparedStatement pstseat) {
+		try {
+			if (pstatement != null) {
+				pstatement.close();
+			}
+			if (pstwallet != null) {
+				pstwallet.close();
+			}
+			if (pstseat != null) {
+				pstseat.close();
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	
 }

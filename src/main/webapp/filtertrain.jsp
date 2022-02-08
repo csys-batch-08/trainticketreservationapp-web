@@ -144,7 +144,12 @@ a {
 								<c:set var="i" value="0" />
 								<c:forEach items="${FilteredTrain}" var="filterTrainList">
 									<c:set var="i" value="${i+1}" />
-
+									<fmt:parseDate
+										value="${filterTrainList.trainDepartureTime}"
+										pattern="yyyy-MM-dd'T'HH:mm" var="departureTime" type="both" />
+                                      <fmt:parseDate
+										value="${filterTrainList.trainArraivalTime}"
+										pattern="yyyy-MM-dd'T'HH:mm" var="arraivalTime" type="both" />
 									<tr>
 										<td>${i}</td>
 										<td>${filterTrainList.trainName}</td>
@@ -152,8 +157,10 @@ a {
 										<td>${filterTrainList.trainNumber}</td>
 										<td>${filterTrainList.trainSource}</td>
 										<td>${filterTrainList.trainDestination}</td>
-										<td>${filterTrainList.trainDepartureTime}</td>
-										<td>${filterTrainList.trainArraivalTime}</td>
+										<td><fmt:formatDate value="${departureTime}"
+												pattern="dd-MM-yyyy HH:mm" type="both" /></td>
+										<td><fmt:formatDate value="${arraivalTime}"
+												pattern="dd-MM-yyyy HH:mm" type="both" /></td>
 										<td>${filterTrainList.totalseat}</td>
 										<td>${filterTrainList.ticketPrice}</td>
 										<td><td>
