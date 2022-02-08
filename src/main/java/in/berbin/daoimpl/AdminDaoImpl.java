@@ -32,6 +32,9 @@ public class AdminDaoImpl implements AdminDAO{
 	} catch (SQLException e) {
 		System.out.println(e.getMessage());
 	}
+	finally {
+		ConnectionUtil.close(ps, con, rs);
+	}
 	
 	return adminmodule;
 }
@@ -54,6 +57,9 @@ public boolean checkadmin(String adminEmailId)  {
 		}	
 	}  catch (SQLException e) {
 		System.out.println(e.getMessage());
+	}
+	finally {
+		ConnectionUtil.close(ps, con, rs);
 	}
 	return checkAdminFlag;
 }

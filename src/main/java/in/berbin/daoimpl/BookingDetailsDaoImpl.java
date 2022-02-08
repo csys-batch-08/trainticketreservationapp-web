@@ -66,8 +66,7 @@ public class BookingDetailsDaoImpl {
 			result = pstwallet.executeUpdate();
 			result = pstseat.executeUpdate();
 		} catch (SQLException |NullPointerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}  finally {
 			
 				try {
@@ -75,8 +74,7 @@ public class BookingDetailsDaoImpl {
 					pstatement.close();
 					pstwallet.close();
 					pstseat.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				} catch (SQLException |NullPointerException e) {
 					e.printStackTrace();
 				}
 				
