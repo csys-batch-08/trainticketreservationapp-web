@@ -114,9 +114,7 @@ a {
 					<td>${trainList.totalseat}</td>
 					<td>${trainList.ticketPrice}</td>
 					<td><a
-						href="updateTrain.jsp?TrainName=${trainList.trainName} &TrainClass=${trainList.trainClass}&Departuretrain=
-${trainList.trainDepartureTime}&TrainNumber=${trainList.trainNumber}&Arrival=${trainList.trainArraivalTime}&source=${trainList.trainSource}
-&destination=${trainList.trainDestination}&totalseat=${trainList.totalseat}&ticketprice=${trainList.ticketPrice}">Update</a>
+						href="ToUpdateTrainController?trainId=${trainList.trainId}">Update</a>
 				</tr>
 			</c:forEach>
 		</tbody>

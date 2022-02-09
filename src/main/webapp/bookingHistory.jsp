@@ -224,10 +224,9 @@ a {
 														</c:when>
 														<c:otherwise>
 
-
 															<td><button class="btn btn-danger">
 																	<a
-																		href="cancelTicket.jsp?pnrnumber=${CurrentUser.pnrNumber}">Cancel</a>
+																		href="ToCancelTicketController?cancelPnr=${CurrentUser.pnrNumber}">Cancel</a>
 																</button></td>
 														</c:otherwise>
 

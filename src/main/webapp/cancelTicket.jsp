@@ -26,7 +26,7 @@
 <body>
 	<div class="container-fluid">
 		<form action="TicketCancelling">
-			<input type="hidden" name="cancelpnr" id=""value="${param.pnrnumber}">			
+			<input type="hidden" name="cancelpnr" id=""value="${cancelPnr}">			
 			
 				<br> <br> <br> <br>
 				<h4 id="text">To Confirm Cancellation Press OK(10% of totalPrice will be

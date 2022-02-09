@@ -118,7 +118,7 @@ input {
 				<tr>
 					<th id="trainname"><label for="trainname">Train Name:</label>
 					<td><input type="text" name="trainname" id="trainname"
-						Pattern="[Aa-Zz ( )]" value="${param.TrainName}" required><br>
+						Pattern="[Aa-Zz ( )]" value="${TrainDetails.getTrainName()}" required><br>
 						<br>
 					</th>
 					</td>
@@ -126,7 +126,7 @@ input {
 				<tr>
 					<th id="class" ><label for="trainclass">Train Class:</label>
 					<td><input type="text" name="trainclass" id="trclass"
-						pattern="[a-z A-Z]{2,8}" value="${param.TrainClass}"><br>
+						pattern="[a-z A-Z]{2,8}" value="${TrainDetails.getTrainClass()}"><br>
 						<br>
 					</th>
 					</td>
@@ -134,7 +134,7 @@ input {
 				<tr>
 					<th id="trnumber"><label for="trainnumber">Train Number:</label>
 					<td><input type="number" name="trainnumber" id="trnumber"
-						pattern="[0-9]" value="${param.TrainNumber}"
+						pattern="[0-9]" value="${TrainDetails.getTrainNumber()}"
 						placeholder="Enter trainnumber" readonly="readonly"
 						required="required"><br> <br></td>
 					</th>
@@ -143,13 +143,13 @@ input {
 				<tr>
 					<th id="source"><label for="trainsource">Train Source:</label>
 					<td><input type="text" name="trainsource" id="trainsource"
-						value="${param.source}"><br> <br></td>
+						value="${TrainDetails.getTrainSource()}"><br> <br></td>
 					</th>
 				</tr>
 				<tr>
 					<th id="dest"><label for="traindestination">Train Destination:</label>
 					<td><input type="text" name="traindestination"
-						id="trdestination" value="${param.destination}"
+						id="trdestination" value="${TrainDetails.getTrainDestination()}"
 						placeholder="Enter train destination"><br> <br></td>
 					</th>
 				</tr>
@@ -157,28 +157,28 @@ input {
 					<th id="departure"><label for="traindeparturetime">Train Departure
 							Time:</label>
 					<td><input type="datetime-local" name="traindeparturetime"
-						id="trdestime" value="${param.Departuretrain}"><br> <br></td>
+						id="trdestime" value="${TrainDetails.getTrainDepartureTime()}"><br> <br></td>
 
 					</th>
 				</tr>
 				<tr>
 					<th id="arraival"><label for="trainarrivaltime">Train Arrival Time:</label>
 					<td><input type="datetime-local" name="trainarrivaltime"
-						id="trarrtime" value="${param.Arrival}"
+						id="trarrtime" value="${TrainDetails.getTrainArraivalTime()}"
 						placeholder="Enter arrival time"><br> <br></td>
 					</th>
 				</tr>
 				<tr>
 					<th id="seat"><label for="totalseat">Total Seat:</label>
 					<td><input type="number" name="totalseat" id="trtotalseat"
-						min="0" value="${param.totalseat}" placeholder="Enter total seat"><br>
+						min="0" value="${TrainDetails.getTotalseat()}" placeholder="Enter total seat"><br>
 						<br></td>
 					</th>
 				</tr>
 				<tr>
 					<th id="price"><label for="ticketprice">Ticket Price:</label>
 					<td><input type="number" name="ticketprice" id="trticketprice"
-						min="0" value="${param.ticketprice}"
+						min="0" value="${TrainDetails.getTicketPrice() }"
 						placeholder="Enter ticket price"><br> <br></td>
 					</th>
 				</tr>
