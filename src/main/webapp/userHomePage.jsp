@@ -208,6 +208,8 @@ table, tr, td {
 			<form action="FilterTrainController" method="post">
 				<div id="searchlocation">
 					<table>
+					<caption></caption>
+					<th>
 						<tr>
 							<td><div class="fromto">
 									<span>DESTINATION</span><br> <input
@@ -244,6 +246,7 @@ table, tr, td {
 								</div>
 						</tr>
 						</tr>
+						</th>
 					</table>
 					<button type="submit" onclick="return validate()" id="searchbutton">
 						<h2>SEARCH</h2>

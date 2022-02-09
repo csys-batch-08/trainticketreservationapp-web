@@ -107,6 +107,7 @@ a {
 	<form>
 		<div>
 			<fieldset id="fieldsettable">
+			 <legend></legend>
 
 				<div id="forcontent">
 					<ul id="forcontentinlist">

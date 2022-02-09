@@ -144,12 +144,14 @@ margin-left: 43%;
 	<form action="">
 		<div>
 			<fieldset id="fieldsettable">
-
+              <legend></legend>
 
 				<div id="outerlinetable">
 					<table>
-
+<caption></caption>
+<th>
 						<table border="2" id="alltrains">
+						<caption></caption>
 							<h1 id="list">
 								<strong>Booking List</strong>
 							</h1>
@@ -247,6 +249,7 @@ margin-left: 43%;
 									</tr>
 								</c:forEach>
 						</table>
+						</th>
 					</table>
 				</div>
 			</fieldset>
