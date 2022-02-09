@@ -20,6 +20,7 @@ public class UserHomePageController extends HttpServlet {
 			HttpSession session1=request.getSession();
 			  Users userData=(Users)session1.getAttribute("userdata");
 			  request.setAttribute("userData", userData);
+			  session1.setAttribute("userDetails", userData);
 				RequestDispatcher rd = request.getRequestDispatcher("userHomePage.jsp");
 				rd.forward(request, response);
 		} catch (ServletException | IOException e) {

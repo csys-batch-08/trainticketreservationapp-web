@@ -78,18 +78,20 @@ input {
 
 
 
+<c:set var="userDetails" value="${userDetails}" />
+
 				<tr>
 					<th id="name"><label for="fullname">FullName:</label>
 					<td><input type="text" name="fullname" id="fullname"
 						placeholder="Enter your FullName" pattern="[A-Za-z]{3,20}"
-						autofocus="autofocus" value="${param.Username}" required><br>
+						autofocus="autofocus" value="${userDetails.getUserName()}" required><br>
 					<br>
 					</th>
 					</td>
 				</tr>
 				<tr>
 					<th id="dob"><label for="regage">DOB:</label>
-					<td><input type="date" name="dob" value="${param.Userdob}"
+					<td><input type="date" name="dob" value="${userDetails.getUserDob()}"
 						id="regage"><br>
 					<br>
 					</th>
@@ -98,7 +100,7 @@ input {
 				<tr>
 					<th id="email"><label for="regemail">Email:</label>
 					<td><input type="email" name="email" id="regemail"
-						value="${param.Usermailid}" readonly><br>
+						value="${userDetails.getUserEmail()}" readonly><br>
 					<br></td>
 					</th>
 				</tr>
@@ -114,7 +116,7 @@ input {
 				<tr>
 					<th id="number"><label for="regmobilenum">MobileNo:</label>
 					<td><input type="tel" name="mobileno" id="regmobilenum"
-						value="${param.Usermobileno}" readonly><br>
+						value="${userDetails.getUserMobileNumber()}" readonly><br>
 					<br></td>
 					</th>
 				</tr>
