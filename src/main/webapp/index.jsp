@@ -100,22 +100,14 @@ a {
 	height: 100px;
 }
 
-marquee {
-	font-size: 30px;
-	font-weight: 800;
-	color: #ebebe0;
-	font-family: monospace;
-}
+
 #errorMsg{
 margin-left: 40%;
 }
 </style>
 </head>
 <body>
-	<marquee width="100%" direction="left" height="300px">
-		<h2>Welcome to Train Ticket Reservation System. Special Trains
-			will available on special occasion!!</h2>
-	</marquee>
+	
 	<div class="login">
 		<form action="loginusers">
 			<img id="trainpng" class="pngtitle" src="Assests/logintrainicon.jpg"

@@ -42,16 +42,6 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-legend {
-	border: 1px solid black;
-	height: 33px;
-	width: 170px;
-	align: centre;
-	padding: 5px;
-	border-radius: 10px;
-	background-color: rgb(113, 99, 177);
-}
-
 legend h3 {
 	margin-left: 7px;
 }
@@ -132,134 +122,146 @@ a {
 #trainId:hover {
 	background-color: rgb(113, 99, 177);
 }
-#list{
-margin-left: 40%;
+
+#list {
+	margin-left: 0%;
 }
-#backButton{
-margin-left: 43%;
+
+#backButton {
+	margin-left: 43%;
 }
 </style>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<form action="">
 		<div>
 			<fieldset id="fieldsettable">
-              <legend></legend>
+				<legend></legend>
 
 				<div id="outerlinetable">
 					<table>
-<caption></caption>
-<th>
-						<table border="2" id="alltrains">
 						<caption></caption>
-							<h1 id="list">
-								<strong>Booking List</strong>
-							</h1>
-							<thead>
-								<tr>
-									<th id="no">No</th>
-									<th id="trname">Train Name</th>
-									<th id="trclass">Train Class</th>
-									<th id="trname">Train Number</th>
-									<th id="trsource">Train Source</th>
-									<th id="trsource">Train Destination</th>
-									<th id="pnr">PNR Number</th>
-									<th id="journey">Journey Date</th>
-									<th id="ticket">Ticket Count</th>
-									<th id="departure">Departure Date</th>
-									<th id="total">Total Price</th>
-									<th id="ticket">Ticket Status</th>
-									<th id="action">Action</th>
-								</tr>
-							</thead>
-							<br>
-							<br>
-							<tbody>
-
-
-								<c:forEach begin="1" items="${currentttt}" var="CurrentUser"
-									varStatus="loop">
-
-									<c:set var="i" value="0" />
-
-									<c:set var="i" value="${i+1}" />
-									<fmt:parseDate
-										value="${CurrentUser.getTrainModel().getTrainDepartureTime()}"
-										pattern="yyyy-MM-dd'T'HH:mm" var="departureDate" type="both" />
-										
-										<fmt:parseDate
-										value="${CurrentUser.journeyDate}"
-										pattern="yyyy-MM-dd" var="journeyDate" type="both" />
+						<th>
+							<table border="2" id="alltrains">
+								<caption></caption>
+								<h1 id="list">
+									<strong>Booking List</strong>
+								</h1>
+								<thead>
 									<tr>
-										<td>${loop.count}</td>
-										<td>${CurrentUser.getTrainModel().getTrainName()}</td>
-										<td>${CurrentUser.getTrainModel().getTrainClass()}</td>
-										<td>${CurrentUser.getTrainModel().getTrainNumber()}</td>
-										<td>${CurrentUser.getTrainModel().getTrainSource()}</td>
-										<td>${CurrentUser.getTrainModel().getTrainDestination()}</td>
-										<td>${CurrentUser.pnrNumber}</td>
-									<td><fmt:formatDate value="${journeyDate}"
-												pattern="dd-MM-yyyy" type="both" /></td>
-										<td>${CurrentUser.ticketCount}</td>
-										<td><fmt:formatDate value="${departureDate}"
-												pattern="dd-MM-yyyy HH:mm" type="both" /></td>
-										<td>${CurrentUser.totalPrice}</td>
-										<td>${CurrentUser.ticketStatus}</td>
+										<th id="no">No</th>
+										<th id="trname">Train Name</th>
+										<th id="trclass">Train Class</th>
+										<th id="trname">Train Number</th>
+										<th id="trsource">Train Source</th>
+										<th id="trsource">Train Destination</th>
+										<th id="pnr">PNR Number</th>
+										<th id="journey">Journey Date</th>
+										<th id="ticket">Ticket Count</th>
+										<th id="departure">Departure Date</th>
+										<th id="total">Total Price</th>
+										<th id="ticket">Ticket Status</th>
+										<th id="action">Action</th>
+									</tr>
+								</thead>
+								<br>
+								<br>
+								<tbody>
 
-										<c:set var="status" value="${CurrentUser.ticketStatus}" />
-										<c:set var="today" value="${TodayDate}" />
-										<c:set var="departure"
-											value="${CurrentUser.getTrainModel().getTrainDepartureTime()}" />
+
+									<c:forEach begin="1" items="${currentttt}" var="CurrentUser"
+										varStatus="loop">
+
+										<c:set var="i" value="0" />
+
+										<c:set var="i" value="${i+1}" />
 										<fmt:parseDate
 											value="${CurrentUser.getTrainModel().getTrainDepartureTime()}"
-											pattern="yyyy-MM-dd'T'HH:mm" var="macthDate" type="both" />
-										<fmt:formatDate value="${macthDate}" var="presentdate"
-											pattern="yyyy-MM-dd" type="date" />
-										<c:choose>
+											pattern="yyyy-MM-dd'T'HH:mm" var="departureDate" type="both" />
 
-											<c:when test="${today<presentdate}">
-												<c:choose>
+										<fmt:parseDate value="${CurrentUser.journeyDate}"
+											pattern="yyyy-MM-dd" var="journeyDate" type="both" />
+										<tr>
+											<td>${loop.count}</td>
+											<td>${CurrentUser.getTrainModel().getTrainName()}</td>
+											<td>${CurrentUser.getTrainModel().getTrainClass()}</td>
+											<td>${CurrentUser.getTrainModel().getTrainNumber()}</td>
+											<td>${CurrentUser.getTrainModel().getTrainSource()}</td>
+											<td>${CurrentUser.getTrainModel().getTrainDestination()}</td>
+											<td>${CurrentUser.pnrNumber}</td>
+											<td><fmt:formatDate value="${journeyDate}"
+													pattern="dd-MM-yyyy" type="both" /></td>
+											<td>${CurrentUser.ticketCount}</td>
+											<td><fmt:formatDate value="${departureDate}"
+													pattern="dd-MM-yyyy HH:mm" type="both" /></td>
+											<td>${CurrentUser.totalPrice}</td>
+											<td>${CurrentUser.ticketStatus}</td>
 
-													<c:when
-														test="${CurrentUser.ticketStatus.equals('Cancelled')}">
-														<td>CANCELLED</td>
+											<c:set var="status" value="${CurrentUser.ticketStatus}" />
+											<c:set var="today" value="${TodayDate}" />
+											<c:set var="departure"
+												value="${CurrentUser.getTrainModel().getTrainDepartureTime()}" />
+											<fmt:parseDate
+												value="${CurrentUser.getTrainModel().getTrainDepartureTime()}"
+												pattern="yyyy-MM-dd'T'HH:mm" var="macthDate" type="both" />
+											<fmt:formatDate value="${macthDate}" var="presentdate"
+												pattern="yyyy-MM-dd" type="date" />
+											<c:choose>
 
-													</c:when>
-													<c:otherwise>
+												<c:when test="${today<presentdate}">
+													<c:choose>
+
+														<c:when
+															test="${CurrentUser.ticketStatus.equals('Cancelled')}">
+															<td>CANCELLED</td>
+
+														</c:when>
+														<c:otherwise>
 
 
-														<td><button class="btn btn-danger">
-																<a
-																	href="cancelTicket.jsp?pnrnumber=${CurrentUser.pnrNumber}">Cancel</a>
-															</button></td>
-													</c:otherwise>
+															<td><button class="btn btn-danger">
+																	<a
+																		href="cancelTicket.jsp?pnrnumber=${CurrentUser.pnrNumber}">Cancel</a>
+																</button></td>
+														</c:otherwise>
 
-												</c:choose>
-
-
-											</c:when>
-											<c:otherwise>
-
-												<td>Journey Completed</td>
+													</c:choose>
 
 
-											</c:otherwise>
-										</c:choose>
+												</c:when>
+												<c:otherwise>
 
-									</tr>
-								</c:forEach>
-						</table>
+													<td>Journey Completed</td>
+
+
+												</c:otherwise>
+											</c:choose>
+
+										</tr>
+									</c:forEach>
+							</table>
 						</th>
 					</table>
 				</div>
 			</fieldset>
 		</div>
 	</form>
-		<a href="UserHomePageController"><button class="btn btn-primary" id="backButton">Back
-				to HomePage</button></a>
+	<a href="UserHomePageController"><button class="btn btn-primary"
+			id="backButton">Back to HomePage</button></a>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+			$('#alltrains').DataTable();
+		});
+	</script>
 </body>
 </html>
