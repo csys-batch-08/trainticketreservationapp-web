@@ -66,7 +66,7 @@ public class BookingDetailsDaoImpl {
 			result = pstwallet.executeUpdate();
 			result = pstseat.executeUpdate();
 		} catch (SQLException |NullPointerException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}  finally {
 			ConnectionUtil.close(pstatement, pstwallet, pstseat);
 				
