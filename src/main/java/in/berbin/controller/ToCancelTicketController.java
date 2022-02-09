@@ -25,8 +25,8 @@ public class ToCancelTicketController extends HttpServlet {
 			session.setAttribute("cancelPnr", cancelPnr);
 			  RequestDispatcher reqDispatcher=req.getRequestDispatcher("cancelTicket.jsp");
 		      reqDispatcher.forward(req, res);
-		} catch (NumberFormatException e) {
-			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			e.getMessage();
 		}
 	}
 
