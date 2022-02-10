@@ -1,9 +1,9 @@
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="in.berbin.model.Trains"%>
+<%@page import="com.berbin.model.Trains"%>
 <%@page import="java.util.*"%>
-<%@page import="in.berbin.daoimpl.TrainDaoImpl"%>
+<%@page import="com.berbin.daoimpl.TrainDaoImpl"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 

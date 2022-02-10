@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="in.berbin.model.Trains"%>
+     <%@page import="com.berbin.model.Trains"%>
     <%@page import="java.util.*"%>
-         <%@page import="in.berbin.model.BookingDetails"%>
+         <%@page import="com.berbin.model.BookingDetails"%>
     <%@page import="java.time.format.DateTimeFormatter"%>
-            <%@page import="in.berbin.daoimpl.TrainDaoImpl"%>
-            <%@page import="in.berbin.daoimpl.BookingDetailsDaoImpl"%>
+            <%@page import="com.berbin.daoimpl.TrainDaoImpl"%>
+            <%@page import="com.berbin.daoimpl.BookingDetailsDaoImpl"%>
                <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
          
             

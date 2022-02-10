@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="in.berbin.daoimpl.TrainDaoImpl"%>
-        <%@page import="in.berbin.daoimpl.UserDaoImpl"%>
-    
-    <%@page import="in.berbin.model.*"%>
-        <%@page import="javax.servlet.http.HttpSession" %>
+  
   
              <!DOCTYPE html>
 <html lang="en">

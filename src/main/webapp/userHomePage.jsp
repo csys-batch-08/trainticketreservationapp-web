@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="in.berbin.controller.*"%>
-<%@page import="in.berbin.model.Users"%>
-<%@page import="in.berbin.daoimpl.UserDaoImpl"%>
+	pageEncoding="ISO-8859-1" import="com.berbin.controller.*"%>
+<%@page import="com.berbin.model.Users"%>
+<%@page import="com.berbin.daoimpl.UserDaoImpl"%>
 <%@page import="javax.servlet.http.HttpSession"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>

@@ -2,9 +2,9 @@
 <%@page import="java.time.format.DateTimeFormatter"%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="in.berbin.daoimpl.TrainDaoImpl"%>
+<%@page import="com.berbin.daoimpl.TrainDaoImpl"%>
 <%@page import="java.time.LocalDate"%>
-<%@page import="in.berbin.model.*"%>
+<%@page import="com.berbin.model.*"%>
 <%@page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-        <%@page import="in.berbin.model.Users"%>
+        <%@page import="com.berbin.model.Users"%>
     <%@page import="java.util.*"%>
-            <%@page import="in.berbin.daoimpl.UserDaoImpl"%>
+            <%@page import="com.berbin.daoimpl.UserDaoImpl"%>
             <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">

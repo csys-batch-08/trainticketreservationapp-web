@@ -124,7 +124,7 @@ input {
 					<th id="trname"><label for="trainname">Train Name:</label>
 					<td><input type="text" name="trainname" id="trainname"
 						Pattern="[Aa-Zz ( )]" placeholder="Enter Train Name" required><br>
-						<br>
+						<br></td>
 					</th>
 
 				</tr>
@@ -132,9 +132,9 @@ input {
 					<th id="trclass"><label for="trainclass">Train Class:</label>
 					<td><input type="text" name="trainclass" id="trclass"
 						pattern="[a-z A-Z]{2,40}" placeholder="Enter train class" required><br>
-						<br>
+						<br></td>
 					</th>
-					</td>
+					
 				</tr>
 				<tr>
 					<th id="trnumber"><label for="trainnumber">Train
